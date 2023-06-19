@@ -21,7 +21,7 @@
             {
                 int[,] slotMachine = new int[3, 3];
 
-                for (int i = 0; i < slotMachine.GetLength(0); i++)
+                for (int i = 0; i < slotMachine.GetLength(0); i++) 
                 {
                     for (int j = 0; j < slotMachine.GetLength(1); j++)
                     {
