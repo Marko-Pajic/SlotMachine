@@ -38,37 +38,21 @@ namespace SlotMachine
                 }
                 Console.WriteLine("How much is your wager:");
                 int amountForPlaying = Convert.ToInt32(Console.ReadLine());
-                for (int i = 0; i < Math.Min(amountForPlaying, GRID_ROW); i++)
+                for (int i = 0; i < amountForPlaying; i++)
                 {
                     if (slotMachine[i, 0] == slotMachine[i, 1] && slotMachine[i, 1] == slotMachine[i, 2])
                     {
-                        Console.WriteLine("Similar numbers found in row " + (i + 1));
+                        Console.WriteLine("YES");
                     }
-                }
-
-             
-                for (int j = 0; j < Math.Min(amountForPlaying, GRID_COLUMN); j++)
-                {
-                    if (slotMachine[0, j] == slotMachine[1, j] && slotMachine[1, j] == slotMachine[2, j])
+                    for (int j = 0; j < GRID_COLUMN; j++)
                     {
-                        Console.WriteLine("Similar numbers found in column " + (j + 1));
+                        if (slotMachine[0, j] == slotMachine[1, j] && slotMachine[1, j] == slotMachine[2, j])
+                        {
+                            Console.WriteLine("NO");
+                        }
+                        Console.Write(" " + slotMachine[i, j] + " ");
                     }
                 }
-                //for (int i = 0; i < amountForPlaying; i++)
-                //{
-                //    if (slotMachine[i, 0] == slotMachine[i, 1] && slotMachine[i, 1] == slotMachine[i, 2])
-                //    {
-                //        Console.WriteLine("YES");
-                //    }
-                //    for (int j = 0; j < GRID_COLUMN; j++)
-                //    {
-                //        if (slotMachine[0, j] == slotMachine[1, j] && slotMachine[1, j] == slotMachine[2, j])
-                //        {
-                //            Console.WriteLine("NO");
-                //        }
-                //        Console.Write(" " + slotMachine[i, j] + " ");
-                //    }
-                //}
             }
         }
     }
