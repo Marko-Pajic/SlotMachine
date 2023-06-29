@@ -4,7 +4,7 @@ namespace SlotMachine
 {
     internal class Program
     {
-        public const int UPPER_BOUND = 5;
+        public const int UPPER_BOUND = 6;
         public const int MINIMUM_WAGER = 1;
         public const int MAXIMUM_WAGER = 8;
         public const int GRID_ROW = 3;
@@ -27,30 +27,59 @@ namespace SlotMachine
             {
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
 
-                for (int i = 0; i < slotMachine.GetLength(0); i++)
+                for (int row = 0; row < slotMachine.GetLength(0); row++)
                 {
-                    for (int j = 0; j < slotMachine.GetLength(1); j++)
+                    for (int col = 0; col < slotMachine.GetLength(1); col++)
                     {
-                        slotMachine[i, j] = rng.Next(1, 6);
-                        Console.Write(" " + slotMachine[i, j] + " ");
+                        slotMachine[row, col] = rng.Next(1, UPPER_BOUND);
+                        Console.Write(" " + slotMachine[row, col] + " ");
                     }
                     Console.WriteLine();
                 }
                 Console.WriteLine("How much is your wager:");
-                int amountForPlaying = Convert.ToInt32(Console.ReadLine());
-                for (int i = 0; i < amountForPlaying; i++)
+                int wagerAmount = Convert.ToInt32(Console.ReadLine());
+                int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
+                if (wagerAmount <= allRowsandColsChecked)
                 {
-                    if (slotMachine[i, 0] == slotMachine[i, 1] && slotMachine[i, 1] == slotMachine[i, 2])
+                    int numberOfRowsToCheck = Math.Min(wagerAmount, GRID_ROW);
+                    for (int row = 0; row < numberOfRowsToCheck; row++)
                     {
-                        Console.WriteLine("YES");
-                    }
-                    for (int j = 0; j < GRID_COLUMN; j++)
-                    {
-                        if (slotMachine[0, j] == slotMachine[1, j] && slotMachine[1, j] == slotMachine[2, j])
+                        for (int col = 0; col < GRID_COLUMN; col++)
                         {
-                            Console.WriteLine("NO");
+                            Console.Write(" " + slotMachine[row, col] + " ");
+                            if (slotMachine[row, col + col] == slotMachine[row, col - col] && slotMachine[row, col] == slotMachine[row, col + col])
+                            {
+                                cashDeposit++;
+                            }
+                            Console.WriteLine();
                         }
-                        Console.Write(" " + slotMachine[i, j] + " ");
+                        //            Console.WriteLine("YES");
+                        //        }
+                        //    }
+                    }
+                    if (wagerAmount > GRID_COLUMN && wagerAmount <= allRowsandColsChecked)
+                    {
+                        int numberOfColumnsToCheck = wagerAmount - GRID_COLUMN;
+                        for (int col = 0; col < numberOfColumnsToCheck; col++)
+                        {
+                            for (int row = 0; row < GRID_ROW; row++)
+                            {
+                                Console.Write(" " + slotMachine[row, col] + " ");
+
+                            }
+                            Console.WriteLine();
+                        }
+
+                        //        if (slotMachine[0, j] == slotMachine[1, j] && slotMachine[1, j] == slotMachine[2, j])
+                        //        {
+                        //            Console.WriteLine("NO");
+                        //        }
+                        //    }
+                        //}
+                        //if (amountForPlaying > UPPER_BOUND && amountForPlaying <= MAXIMUM_WAGER)
+                        {
+
+                        }
                     }
                 }
             }
