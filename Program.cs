@@ -63,24 +63,36 @@ namespace SlotMachine
                             cashDeposit++;
                         }
                     }
-                    if (wagerAmount > GRID_ROW && wagerAmount <= allRowsandColsChecked)
+                }
+                if (wagerAmount > GRID_ROW && wagerAmount <= allRowsandColsChecked)
+                {
+                    int numberOfColumnsToCheck = wagerAmount - GRID_ROW;
+                    for (int col = 0; col < numberOfColumnsToCheck; col++)
                     {
-                        int numberOfColumnsToCheck = wagerAmount - GRID_ROW;
-                        for (int col = 0; col < numberOfColumnsToCheck; col++)
+                        int firstValueOfCLine = slotMachine[0, col];
+                        bool allValuesAreEqual = true;
+                        for (int row = 0; row < GRID_ROW; row++)
                         {
-                            for (int row = 0; row < GRID_ROW; row++)
+                            Console.Write(" " + slotMachine[row, col] + " ");
+                            if (firstValueOfCLine != slotMachine[row, col])
                             {
-                                Console.Write(" " + slotMachine[row, col] + " ");
-
+                                allValuesAreEqual = false;
+                                break;
                             }
                             Console.WriteLine();
-                        }
-                        //if (amountForPlaying > UPPER_BOUND && amountForPlaying <= MAXIMUM_WAGER)
-                        //{
 
-                        //}
+                        }
+                        if (allValuesAreEqual)
+                        {
+                            cashDeposit++;
+                        }
                     }
                 }
+                    //if (amountForPlaying > UPPER_BOUND && amountForPlaying <= MAXIMUM_WAGER)
+                    //{
+
+                    //}
+
             }
         }
     }
