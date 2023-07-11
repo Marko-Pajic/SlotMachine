@@ -41,7 +41,7 @@ namespace SlotMachine
                 Console.WriteLine("How much is your wager:");
                 int wagerAmount = Convert.ToInt32(Console.ReadLine());
                 int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
-                if (wagerAmount <= allRowsandColsChecked)
+                if (wagerAmount >= MINIMUM_WAGER && wagerAmount <= MAXIMUM_WAGER)
                 {
                     int numberOfRowsToCheck = Math.Min(wagerAmount, GRID_ROW);
                     for (int row = 0; row < numberOfRowsToCheck; row++)
@@ -64,9 +64,9 @@ namespace SlotMachine
                         }
                     }
                 }
-                if (wagerAmount > GRID_ROW && wagerAmount <= allRowsandColsChecked)
+                if (wagerAmount > GRID_ROW && wagerAmount <= MAXIMUM_WAGER)
                 {
-                    int numberOfColumnsToCheck = wagerAmount - GRID_ROW;
+                    int numberOfColumnsToCheck = Math.Min(wagerAmount - GRID_ROW, GRID_ROW);
                     for (int col = 0; col < numberOfColumnsToCheck; col++)
                     {
                         int firstValueOfCLine = slotMachine[0, col];
@@ -88,11 +88,31 @@ namespace SlotMachine
                         }
                     }
                 }
-                    //if (amountForPlaying > UPPER_BOUND && amountForPlaying <= MAXIMUM_WAGER)
+                if (wagerAmount > allRowsandColsChecked && wagerAmount < MAXIMUM_WAGER)
+                {
+                
+                    for (int i = 0; i < GRID_ROW; i++)
+                    {
+                        int row = i;
+                        int col = i;
+                        Console.WriteLine(slotMachine[row, col]);
+                    }
+                    //for (col = 0 + col; col <= GRID_ROW; col++)
                     //{
+                    //    for (int row = 0; row < GRID_ROW; row++)
+                    //    {
 
+                    //    }
                     //}
-
+                }
+                if (wagerAmount == MINIMUM_WAGER)
+                {
+                    for(int i = 3;i >= 0; i--)
+                    {
+                        int row = i - 1;
+                        int col = i - 1;
+                    }
+                }
             }
         }
     }
