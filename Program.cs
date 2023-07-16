@@ -25,9 +25,9 @@ namespace SlotMachine
             int cashDeposit = Convert.ToInt32(Console.ReadLine());
             while (cashDeposit >= MINIMUM_WAGER)
             {
-                int[,] slotMachine = new int[,] { { 1, 3, 1 },
-                                                  { 2, 2, 2 },
-                                                  { 3, 4, 5 } };//[GRID_ROW, GRID_COLUMN];
+                int[,] slotMachine = new int[,] { { 1, 2, 3 },
+                                                  { 4, 5, 6 },
+                                                  { 7, 8, 9 } };//[GRID_ROW, GRID_COLUMN];
 
                 //for (int row = 0; row < slotMachine.GetLength(0); row++)
                 //{
@@ -61,8 +61,15 @@ namespace SlotMachine
                         if (allValuesAreEqual)
                         {
                             cashDeposit++;
+                            Console.WriteLine("Win!");
+                        }
+                        else
+                        {
+                            cashDeposit--;
+                            Console.WriteLine("Lose!");
                         }
                     }
+                    Console.WriteLine(cashDeposit);
                 }
                 if (wagerAmount > GRID_ROW && wagerAmount <= MAXIMUM_WAGER)
                 {
@@ -85,33 +92,70 @@ namespace SlotMachine
                         if (allValuesAreEqual)
                         {
                             cashDeposit++;
+                            Console.WriteLine("Win!");
+                        }
+                        else
+                        {
+                            cashDeposit--;
+                            Console.WriteLine("Lose!");
                         }
                     }
+                    Console.WriteLine(cashDeposit);
                 }
                 if (wagerAmount > allRowsandColsChecked && wagerAmount < MAXIMUM_WAGER)
                 {
-                
+
+                    bool allValuesAreEqual = true;
                     for (int i = 0; i < GRID_ROW; i++)
                     {
                         int row = i;
                         int col = i;
+                        int firstValueOfDLine = slotMachine[0, 0];
                         Console.WriteLine(slotMachine[row, col]);
+                        if (firstValueOfDLine != slotMachine[row, col])
+                        {
+                            allValuesAreEqual = false;
+                            break;
+                        }
                     }
-                    //for (col = 0 + col; col <= GRID_ROW; col++)
-                    //{
-                    //    for (int row = 0; row < GRID_ROW; row++)
-                    //    {
-
-                    //    }
-                    //}
-                }
-                if (wagerAmount == MINIMUM_WAGER)
-                {
-                    for(int i = 3;i >= 0; i--)
+                    if (allValuesAreEqual)
                     {
-                        int row = i - 1;
-                        int col = i - 1;
+                        cashDeposit++;
+                        Console.WriteLine("Win!");
                     }
+                    else
+                    {
+                        cashDeposit--;
+                        Console.WriteLine("Lose!");
+                    }
+                    Console.WriteLine(cashDeposit);
+                }
+                if (wagerAmount == MAXIMUM_WAGER)
+                {
+                    bool allValuesAreEqual = true;
+                    for (int i = 3; i > 0; i--)
+                    {
+                        int row = Math.Abs(i - 3);
+                        int col = i - 1;
+                        int firstValueOfDLine = slotMachine[0, 2];
+                        Console.WriteLine(slotMachine[row, col]);
+                        if (firstValueOfDLine != slotMachine[row, col])
+                        {
+                            allValuesAreEqual = false;
+                            break;
+                        }
+                    }
+                    if (allValuesAreEqual)
+                    {
+                        cashDeposit++;
+                        Console.WriteLine("Win!");
+                    }
+                    else //Unecesary else incorporarte in above if with break statement!!!
+                    {
+                        cashDeposit--;
+                        Console.WriteLine("Lose!");
+                    }
+                    Console.WriteLine(cashDeposit);
                 }
             }
         }
