@@ -12,17 +12,21 @@ namespace SlotMachine
         public static readonly Random rng = new Random();
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to SlotMachine");
+            Console.WriteLine("\t***Welcome to SlotMachine***\n");
             Console.WriteLine("To play this game you are going to need to deposit certain amount of money");
-            Console.WriteLine("Further you will be asked how much are you willing to play for after every spin");
+            Console.WriteLine("Further you will be asked how much are you willing to play for after every spin\n");
             Console.WriteLine($"Minimun deposit and wager is {MINIMUM_WAGER} dollar");
-            Console.WriteLine($"{MINIMUM_WAGER} dollar will give you opportunity to play one line");
+            Console.WriteLine($"{MINIMUM_WAGER} dollar will give you opportunity to play one line\n");
             Console.WriteLine("As you increase the wager more lines will open continuing downwords horisontally,vertically and diagonally");
-            Console.WriteLine($"{MAXIMUM_WAGER} dollars is a maximum as it gives you oportunity to play all possible lines");
-            Console.WriteLine("Spining time!");
+            Console.WriteLine($"{MAXIMUM_WAGER} dollars is a maximum as it gives you oportunity to play all possible lines\n");
 
-            Console.WriteLine("Insert the deposit:");
+            Console.WriteLine("\t!!!Spining time!!!\n");
+            Console.WriteLine("\t$Insert the deposit$");
             int cashDeposit = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\t!?How much is your wager?!"); //Something is wrong with this!!!
+            int wagerAmount = Convert.ToInt32(Console.ReadLine());
+            int winningLinesCount = 0;
+
             while (cashDeposit >= MINIMUM_WAGER)
             {
                 int[,] slotMachine = new int[,] { { 1, 2, 3 },
@@ -38,8 +42,6 @@ namespace SlotMachine
                 //    }
                 //    Console.WriteLine();
                 //}
-                Console.WriteLine("How much is your wager:");
-                int wagerAmount = Convert.ToInt32(Console.ReadLine());
                 int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
                 if (wagerAmount >= MINIMUM_WAGER && wagerAmount <= MAXIMUM_WAGER)
                 {
@@ -50,12 +52,10 @@ namespace SlotMachine
                         int firstValueOfRLine = slotMachine[row, 0];
                         for (int col = 0; col < GRID_COLUMN; col++)
                         {
-                            Console.Write(" " + slotMachine[row, col] + " ");
                             if (firstValueOfRLine != slotMachine[row, col])
                             {
                                 allValuesAreEqual = false;
                                 cashDeposit--;
-                                Console.WriteLine("Lose!");
                                 break;
                             }
                             Console.WriteLine();
@@ -63,10 +63,10 @@ namespace SlotMachine
                         if (allValuesAreEqual)
                         {
                             cashDeposit++;
+                            winningLinesCount++;
                             Console.WriteLine("Win!");
                         }
                     }
-                    Console.WriteLine(cashDeposit);
                 }
                 if (wagerAmount > GRID_ROW && wagerAmount <= MAXIMUM_WAGER)
                 {
@@ -77,12 +77,10 @@ namespace SlotMachine
                         bool allValuesAreEqual = true;
                         for (int row = 0; row < GRID_ROW; row++)
                         {
-                            Console.Write(" " + slotMachine[row, col] + " ");
                             if (firstValueOfCLine != slotMachine[row, col])
                             {
                                 allValuesAreEqual = false;
                                 cashDeposit--;
-                                Console.WriteLine("Lose!");
                                 break;
                             }
                             Console.WriteLine();
@@ -91,12 +89,12 @@ namespace SlotMachine
                         if (allValuesAreEqual)
                         {
                             cashDeposit++;
+                            winningLinesCount++;
                             Console.WriteLine("Win!");
                         }
                     }
-                    Console.WriteLine(cashDeposit);
                 }
-                if (wagerAmount > allRowsandColsChecked && wagerAmount < MAXIMUM_WAGER)
+                if (wagerAmount > allRowsandColsChecked)
                 {
 
                     bool allValuesAreEqual = true;
@@ -105,46 +103,52 @@ namespace SlotMachine
                         int row = i;
                         int col = i;
                         int firstValueOfDLine = slotMachine[0, 0];
-                        Console.WriteLine(slotMachine[row, col]);
                         if (firstValueOfDLine != slotMachine[row, col])
                         {
                             allValuesAreEqual = false;
                             cashDeposit--;
-                            Console.WriteLine("Lose!");
                             break;
                         }
                     }
                     if (allValuesAreEqual)
                     {
                         cashDeposit++;
+                        winningLinesCount++;
                         Console.WriteLine("Win!");
                     }
-                    Console.WriteLine(cashDeposit);
                 }
                 if (wagerAmount == MAXIMUM_WAGER)
                 {
                     bool allValuesAreEqual = true;
-                    for (int i = 3; i > 0; i--)
+                    for (int i = GRID_COLUMN; i > 0; i--)
                     {
-                        int row = Math.Abs(i - 3);
+                        int row = Math.Abs(i - GRID_COLUMN);
                         int col = i - 1;
-                        int firstValueOfDLine = slotMachine[0, 2];
-                        Console.WriteLine(slotMachine[row, col]);
+                        int firstValueOfDLine = slotMachine[0, GRID_COLUMN - 1];
                         if (firstValueOfDLine != slotMachine[row, col])
                         {
                             allValuesAreEqual = false;
                             cashDeposit--;
-                            Console.WriteLine("Lose!");
                             break;
                         }
                     }
                     if (allValuesAreEqual)
                     {
                         cashDeposit++;
+                        winningLinesCount++;
                         Console.WriteLine("Win!");
                     }
-                    Console.WriteLine(cashDeposit);
                 }
+                int winningLines = cashDeposit - winningLinesCount;
+                if (winningLinesCount > 0)
+                {
+                    Console.WriteLine($"You had {winningLines} lines!\nNice!\nLets spin some more!\n");
+                }
+                else
+                {
+                    Console.WriteLine("No luck for you this time!\nLets spin some more!\n");
+                }
+                Console.WriteLine($"Your current playing deposit is {cashDeposit}$\n");
             }
         }
     }
