@@ -54,6 +54,8 @@ namespace SlotMachine
                             if (firstValueOfRLine != slotMachine[row, col])
                             {
                                 allValuesAreEqual = false;
+                                cashDeposit--;
+                                Console.WriteLine("Lose!");
                                 break;
                             }
                             Console.WriteLine();
@@ -62,11 +64,6 @@ namespace SlotMachine
                         {
                             cashDeposit++;
                             Console.WriteLine("Win!");
-                        }
-                        else
-                        {
-                            cashDeposit--;
-                            Console.WriteLine("Lose!");
                         }
                     }
                     Console.WriteLine(cashDeposit);
@@ -84,6 +81,8 @@ namespace SlotMachine
                             if (firstValueOfCLine != slotMachine[row, col])
                             {
                                 allValuesAreEqual = false;
+                                cashDeposit--;
+                                Console.WriteLine("Lose!");
                                 break;
                             }
                             Console.WriteLine();
@@ -93,11 +92,6 @@ namespace SlotMachine
                         {
                             cashDeposit++;
                             Console.WriteLine("Win!");
-                        }
-                        else
-                        {
-                            cashDeposit--;
-                            Console.WriteLine("Lose!");
                         }
                     }
                     Console.WriteLine(cashDeposit);
@@ -115,6 +109,8 @@ namespace SlotMachine
                         if (firstValueOfDLine != slotMachine[row, col])
                         {
                             allValuesAreEqual = false;
+                            cashDeposit--;
+                            Console.WriteLine("Lose!");
                             break;
                         }
                     }
@@ -122,11 +118,6 @@ namespace SlotMachine
                     {
                         cashDeposit++;
                         Console.WriteLine("Win!");
-                    }
-                    else
-                    {
-                        cashDeposit--;
-                        Console.WriteLine("Lose!");
                     }
                     Console.WriteLine(cashDeposit);
                 }
@@ -142,6 +133,8 @@ namespace SlotMachine
                         if (firstValueOfDLine != slotMachine[row, col])
                         {
                             allValuesAreEqual = false;
+                            cashDeposit--;
+                            Console.WriteLine("Lose!");
                             break;
                         }
                     }
@@ -149,11 +142,6 @@ namespace SlotMachine
                     {
                         cashDeposit++;
                         Console.WriteLine("Win!");
-                    }
-                    else //Unecesary else incorporarte in above if with break statement!!!
-                    {
-                        cashDeposit--;
-                        Console.WriteLine("Lose!");
                     }
                     Console.WriteLine(cashDeposit);
                 }
