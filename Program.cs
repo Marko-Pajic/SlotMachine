@@ -22,26 +22,24 @@ namespace SlotMachine
 
             Console.WriteLine("\t!!!Spining time!!!\n");
             Console.WriteLine("\t$Insert the deposit$");
-            int cashDeposit = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("\t!?How much is your wager?!"); //Something is wrong with this!!!
-            int wagerAmount = Convert.ToInt32(Console.ReadLine());
-            int winningLinesCount = 0;
+            int cashDeposit = Convert.ToInt32(Console.ReadLine());//issue with deposit when it drops under 8$...it still possible to bet on max(8$)...need to set bounderies!
 
             while (cashDeposit >= MINIMUM_WAGER)
             {
-                int[,] slotMachine = new int[,] { { 1, 2, 3 },
-                                                  { 4, 5, 6 },
-                                                  { 7, 8, 9 } };//[GRID_ROW, GRID_COLUMN];
+                Console.WriteLine("\t!?How much is your wager?!");
+                int wagerAmount = Convert.ToInt32(Console.ReadLine());
+                int winningLinesCount = 0;
+                int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
 
-                //for (int row = 0; row < slotMachine.GetLength(0); row++)
-                //{
-                //    for (int col = 0; col < slotMachine.GetLength(1); col++)
-                //    {
-                //        slotMachine[row, col] = rng.Next(1, UPPER_BOUND);
-                //        Console.Write(" " + slotMachine[row, col] + " ");
-                //    }
-                //    Console.WriteLine();
-                //}
+                for (int row = 0; row < slotMachine.GetLength(0); row++)
+                {
+                    for (int col = 0; col < slotMachine.GetLength(1); col++)
+                    {
+                        slotMachine[row, col] = rng.Next(1, UPPER_BOUND);
+                        Console.Write("\t " + slotMachine[row, col] + " ");
+                    }
+                    Console.WriteLine();
+                }
                 int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
                 if (wagerAmount >= MINIMUM_WAGER && wagerAmount <= MAXIMUM_WAGER)
                 {
@@ -139,17 +137,32 @@ namespace SlotMachine
                         Console.WriteLine("Win!");
                     }
                 }
-                int winningLines = cashDeposit - winningLinesCount;
+                int lostWager = wagerAmount - winningLinesCount;//keeping this for now maybe later for more detailed output!
                 if (winningLinesCount > 0)
                 {
-                    Console.WriteLine($"You had {winningLines} lines!\nNice!\nLets spin some more!\n");
+                    Console.WriteLine($"You had {winningLinesCount} winning lines!\nNice!\nLets spin some more!\n");
                 }
                 else
                 {
-                    Console.WriteLine("No luck for you this time!\nLets spin some more!\n");
+                    Console.WriteLine("No luck this time!\nLets spin some more!\n");
                 }
+
                 Console.WriteLine($"Your current playing deposit is {cashDeposit}$\n");
+                Console.WriteLine("Do you want to cash out?");
+                string cashMeOut = Console.ReadLine().ToLower();
+                if (cashMeOut == "y")
+                {
+                    Console.WriteLine("Your deposit will be paid out now.");
+                    Console.WriteLine("Thank you for playing!\n");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Lets continue!\n");
+                }
+
             }
+            Console.WriteLine("GAME OVER!");
         }
     }
 }
