@@ -29,9 +29,9 @@
                 int winningLinesCount = 0;
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
 
-                for (int row = 0; row < slotMachine.GetLength(0); row++)
+                for (int row = 0; row < GRID_ROW; row++)
                 {
-                    for (int col = 0; col < slotMachine.GetLength(1); col++)
+                    for (int col = 0; col < GRID_COLUMN; col++)
                     {
                         slotMachine[row, col] = rng.Next(1, UPPER_BOUND);
                         Console.Write("\t " + slotMachine[row, col] + " ");
