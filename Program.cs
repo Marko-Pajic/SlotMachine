@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace SlotMachine
+﻿namespace SlotMachine
 {
     internal class Program
     {
