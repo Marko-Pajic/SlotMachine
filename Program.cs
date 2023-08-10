@@ -38,14 +38,18 @@
                     }
                     Console.WriteLine();
                 }
+
                 int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
+
                 if (wagerAmount >= MINIMUM_WAGER && wagerAmount <= MAXIMUM_WAGER)
                 {
                     int numberOfRowsToCheck = Math.Min(wagerAmount, GRID_ROW);
+
                     for (int row = 0; row < numberOfRowsToCheck; row++)
                     {
                         bool allValuesAreEqual = true;
                         int firstValueOfRLine = slotMachine[row, 0];
+
                         for (int col = 0; col < GRID_COLUMN; col++)
                         {
                             if (firstValueOfRLine != slotMachine[row, col])
@@ -56,6 +60,7 @@
                             }
                             Console.WriteLine();
                         }
+
                         if (allValuesAreEqual)
                         {
                             cashDeposit++;
@@ -64,13 +69,16 @@
                         }
                     }
                 }
+
                 if (wagerAmount > GRID_ROW && wagerAmount <= MAXIMUM_WAGER)
                 {
                     int numberOfColumnsToCheck = Math.Min(wagerAmount - GRID_ROW, GRID_ROW);
+
                     for (int col = 0; col < numberOfColumnsToCheck; col++)
                     {
                         int firstValueOfCLine = slotMachine[0, col];
                         bool allValuesAreEqual = true;
+
                         for (int row = 0; row < GRID_ROW; row++)
                         {
                             if (firstValueOfCLine != slotMachine[row, col])
@@ -82,6 +90,7 @@
                             Console.WriteLine();
 
                         }
+
                         if (allValuesAreEqual)
                         {
                             cashDeposit++;
@@ -90,13 +99,15 @@
                         }
                     }
                 }
+
                 if (wagerAmount > allRowsandColsChecked)
                 {
-
                     bool allValuesAreEqual = true;
+
                     for (int i = 0; i < GRID_ROW; i++)
                     { 
                         int firstValueOfDLine = slotMachine[0, 0];
+
                         if (firstValueOfDLine != slotMachine[i, i])
                         {
                             allValuesAreEqual = false;
@@ -104,6 +115,7 @@
                             break;
                         }
                     }
+
                     if (allValuesAreEqual)
                     {
                         cashDeposit++;
@@ -111,14 +123,17 @@
                         Console.WriteLine("Win!");
                     }
                 }
+
                 if (wagerAmount == MAXIMUM_WAGER)
                 {
                     bool allValuesAreEqual = true;
+
                     for (int i = GRID_COLUMN; i > 0; i--)
                     {
                         int row = Math.Abs(i - GRID_COLUMN);
                         int col = i - 1;
                         int firstValueOfDLine = slotMachine[0, GRID_COLUMN - 1];
+
                         if (firstValueOfDLine != slotMachine[row, col])
                         {
                             allValuesAreEqual = false;
@@ -126,6 +141,7 @@
                             break;
                         }
                     }
+
                     if (allValuesAreEqual)
                     {
                         cashDeposit++;
@@ -146,6 +162,7 @@
                 Console.WriteLine($"Your current playing deposit is {cashDeposit}$\n");
                 Console.WriteLine("Do you want to cash out?");
                 string cashMeOut = Console.ReadLine().ToLower();
+
                 if (cashMeOut == "y")
                 {
                     Console.WriteLine("Your deposit will be paid out now.");
