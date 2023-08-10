@@ -137,7 +137,7 @@ namespace SlotMachine
                         Console.WriteLine("Win!");
                     }
                 }
-                int lostWager = wagerAmount - winningLinesCount;//keeping this for now maybe later for more detailed output!
+                //TODO: int lostWager = wagerAmount - winningLinesCount;
                 if (winningLinesCount > 0)
                 {
                     Console.WriteLine($"You had {winningLinesCount} winning lines!\nNice!\nLets spin some more!\n");
