@@ -97,11 +97,9 @@ namespace SlotMachine
 
                     bool allValuesAreEqual = true;
                     for (int i = 0; i < GRID_ROW; i++)
-                    {
-                        int row = i;
-                        int col = i;
+                    { 
                         int firstValueOfDLine = slotMachine[0, 0];
-                        if (firstValueOfDLine != slotMachine[row, col])
+                        if (firstValueOfDLine != slotMachine[i, i])
                         {
                             allValuesAreEqual = false;
                             cashDeposit--;
