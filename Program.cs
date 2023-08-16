@@ -20,12 +20,13 @@
 
             Console.WriteLine("\t!!!Spining time!!!\n");
             Console.WriteLine("\t$Insert the deposit$");
-            int cashDeposit = Convert.ToInt32(Console.ReadLine());//issue with deposit when it drops under 8$...it still possible to bet on max(8$)...need to set bounderies!
+            int cashDeposit = Convert.ToInt32(Console.ReadLine());//issue with deposit when it drops under 8$...it still possible to bet on max(8$)...need to set bounderies
 
             while (cashDeposit >= MINIMUM_WAGER)
             {
                 Console.WriteLine("\t!?How much is your wager?!");
                 int wagerAmount = Convert.ToInt32(Console.ReadLine());
+                cashDeposit -= wagerAmount;
                 int winningLinesCount = 0;
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
 
@@ -55,7 +56,6 @@
                             if (firstValueOfRLine != slotMachine[row, col])
                             {
                                 allValuesAreEqual = false;
-                                cashDeposit--;
                                 break;
                             }
                             Console.WriteLine();
@@ -63,7 +63,6 @@
 
                         if (allValuesAreEqual)
                         {
-                            cashDeposit++;
                             winningLinesCount++;
                             Console.WriteLine("Win!");
                         }
@@ -84,16 +83,13 @@
                             if (firstValueOfCLine != slotMachine[row, col])
                             {
                                 allValuesAreEqual = false;
-                                cashDeposit--;
                                 break;
                             }
                             Console.WriteLine();
-
                         }
 
                         if (allValuesAreEqual)
                         {
-                            cashDeposit++;
                             winningLinesCount++;
                             Console.WriteLine("Win!");
                         }
@@ -111,14 +107,12 @@
                         if (firstValueOfDLine != slotMachine[i, i])
                         {
                             allValuesAreEqual = false;
-                            cashDeposit--;
                             break;
                         }
                     }
 
                     if (allValuesAreEqual)
                     {
-                        cashDeposit++;
                         winningLinesCount++;
                         Console.WriteLine("Win!");
                     }
@@ -137,19 +131,17 @@
                         if (firstValueOfDLine != slotMachine[row, col])
                         {
                             allValuesAreEqual = false;
-                            cashDeposit--;
                             break;
                         }
                     }
 
                     if (allValuesAreEqual)
                     {
-                        cashDeposit++;
                         winningLinesCount++;
                         Console.WriteLine("Win!");
                     }
                 }
-                //TODO: int lostWager = wagerAmount - winningLinesCount;
+
                 if (winningLinesCount > 0)
                 {
                     Console.WriteLine($"You had {winningLinesCount} winning lines!\nNice!\nLets spin some more!\n");
@@ -158,6 +150,8 @@
                 {
                     Console.WriteLine("No luck this time!\nLets spin some more!\n");
                 }
+
+                cashDeposit += winningLinesCount;
 
                 Console.WriteLine($"Your current playing deposit is {cashDeposit}$\n");
                 Console.WriteLine("Do you want to cash out?");
