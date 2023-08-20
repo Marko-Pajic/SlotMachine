@@ -14,19 +14,22 @@
             Console.WriteLine("To play this game you are going to need to deposit certain amount of money");
             Console.WriteLine("Further you will be asked how much are you willing to play for after every spin\n");
             Console.WriteLine($"Minimun deposit and wager is {MINIMUM_WAGER} dollar");
-            Console.WriteLine($"{MINIMUM_WAGER} dollar will give you opportunity to play one line\n");
+            Console.WriteLine("For every dollar you deposit wi will give you 5 playing credits");
+            Console.WriteLine("One credit will give you opportunity to play one line\n");
             Console.WriteLine("As you increase the wager more lines will open continuing downwords horisontally,vertically and diagonally");
-            Console.WriteLine($"{MAXIMUM_WAGER} dollars is a maximum as it gives you oportunity to play all possible lines\n");
+            Console.WriteLine($"{MAXIMUM_WAGER} credits is a maximum as it gives you oportunity to play all possible lines\n");
 
             Console.WriteLine("\t!!!Spining time!!!\n");
             Console.WriteLine("\t$Insert the deposit$");
             int cashDeposit = Convert.ToInt32(Console.ReadLine());//issue with deposit when it drops under 8$...it still possible to bet on max(8$)...need to set bounderies
+            int playingCredits = cashDeposit * 5;
+            Console.WriteLine($"\nPlaying credits = {playingCredits}\n");
 
-            while (cashDeposit >= MINIMUM_WAGER)
+            while (playingCredits >= MINIMUM_WAGER)
             {
                 Console.WriteLine("\t!?How much is your wager?!");
                 int wagerAmount = Convert.ToInt32(Console.ReadLine());
-                cashDeposit -= wagerAmount;
+                playingCredits -= wagerAmount;
                 int winningLinesCount = 0;
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
 
@@ -101,7 +104,7 @@
                     bool allValuesAreEqual = true;
 
                     for (int i = 0; i < GRID_ROW; i++)
-                    { 
+                    {
                         int firstValueOfDLine = slotMachine[0, 0];
 
                         if (firstValueOfDLine != slotMachine[i, i])
@@ -151,15 +154,17 @@
                     Console.WriteLine("No luck this time!\nLets spin some more!\n");
                 }
 
-                cashDeposit += winningLinesCount;
+                winningLinesCount *= winningLinesCount;
+                playingCredits += winningLinesCount;
 
-                Console.WriteLine($"Your current playing deposit is {cashDeposit}$\n");
+                Console.WriteLine($"Your current playing credits are {playingCredits}\n");
                 Console.WriteLine("Do you want to cash out?");
                 string cashMeOut = Console.ReadLine().ToLower();
 
                 if (cashMeOut == "y")
                 {
-                    Console.WriteLine("Your deposit will be paid out now.");
+                    cashDeposit = playingCredits / 5;
+                    Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.");
                     Console.WriteLine("Thank you for playing!\n");
                     break;
                 }
