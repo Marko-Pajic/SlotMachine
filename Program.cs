@@ -24,6 +24,7 @@
             int cashDeposit = Convert.ToInt32(Console.ReadLine());//issue with deposit when it drops under 8$...it still possible to bet on max(8$)...need to set bounderies
             int playingCredits = cashDeposit * 5;
             Console.WriteLine($"\nPlaying credits = {playingCredits}\n");
+            int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
 
             while (playingCredits >= MINIMUM_WAGER)
             {
@@ -42,8 +43,6 @@
                     }
                     Console.WriteLine();
                 }
-
-                int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
 
                 if (wagerAmount >= MINIMUM_WAGER && wagerAmount <= MAXIMUM_WAGER)
                 {
