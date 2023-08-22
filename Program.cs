@@ -21,7 +21,7 @@
 
             Console.WriteLine("\t!!!Spining time!!!\n");
             Console.WriteLine("\t$Insert the deposit$");
-            int cashDeposit = Convert.ToInt32(Console.ReadLine());//issue with deposit when it drops under 8$...it still possible to bet on max(8$)...need to set bounderies
+            int cashDeposit = Convert.ToInt32(Console.ReadLine());
             int playingCredits = cashDeposit * 5;
             Console.WriteLine($"\nPlaying credits = {playingCredits}\n");
             int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
@@ -30,6 +30,12 @@
             {
                 Console.WriteLine("\t!?How much is your wager?!");
                 int wagerAmount = Convert.ToInt32(Console.ReadLine());
+
+                if (playingCredits < MAXIMUM_WAGER)
+                {
+                    wagerAmount = Math.Min(playingCredits, wagerAmount);
+                }
+
                 playingCredits -= wagerAmount;
                 int winningLinesCount = 0;
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
@@ -44,7 +50,7 @@
                     Console.WriteLine();
                 }
 
-                if (wagerAmount >= MINIMUM_WAGER && wagerAmount <= MAXIMUM_WAGER)
+                if (wagerAmount >= MINIMUM_WAGER)
                 {
                     int numberOfRowsToCheck = Math.Min(wagerAmount, GRID_ROW);
 
@@ -71,7 +77,7 @@
                     }
                 }
 
-                if (wagerAmount > GRID_ROW && wagerAmount <= MAXIMUM_WAGER)
+                if (wagerAmount > GRID_ROW)
                 {
                     int numberOfColumnsToCheck = Math.Min(wagerAmount - GRID_ROW, GRID_ROW);
 
@@ -157,21 +163,30 @@
                 playingCredits += winningLinesCount;
 
                 Console.WriteLine($"Your current playing credits are {playingCredits}\n");
-                Console.WriteLine("Do you want to cash out?");
-                string cashMeOut = Console.ReadLine().ToLower();
+                bool gameOver = false;
 
-                if (cashMeOut == "y")
+                while (playingCredits > 0)
                 {
-                    cashDeposit = playingCredits / 5;
-                    Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.");
-                    Console.WriteLine("Thank you for playing!\n");
+                    Console.WriteLine("Do you want to cash out?");
+                    string cashMeOut = Console.ReadLine().ToLower();
+                    if (cashMeOut == "y")
+                    {
+                        cashDeposit = playingCredits / 5;
+                        Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.");
+                        Console.WriteLine("Thank you for playing!\n");
+                        gameOver = true;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Lets continue!\n");
+                        break;
+                    }
+                }
+                if (gameOver)
+                {
                     break;
                 }
-                else
-                {
-                    Console.WriteLine("Lets continue!\n");
-                }
-
             }
             Console.WriteLine("GAME OVER!");
         }
