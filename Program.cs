@@ -7,6 +7,7 @@
         public const int MAXIMUM_WAGER = 8;
         public const int GRID_ROW = 3;
         public const int GRID_COLUMN = 3;
+        public const int CREDITS_CONVERTOR = 5;
         public static readonly Random rng = new Random();
         static void Main(string[] args)
         {
@@ -22,7 +23,7 @@
             Console.WriteLine("\t!!!Spining time!!!\n");
             Console.WriteLine("\t$Insert the deposit$");
             int cashDeposit = Convert.ToInt32(Console.ReadLine());
-            int playingCredits = cashDeposit * 5;
+            int playingCredits = cashDeposit * CREDITS_CONVERTOR;
             Console.WriteLine($"\nPlaying credits = {playingCredits}\n");
             int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
 
@@ -179,7 +180,7 @@
                     string cashMeOut = Console.ReadLine().ToLower();
                     if (cashMeOut == "y")
                     {
-                        cashDeposit = playingCredits / 5;
+                        cashDeposit = playingCredits / CREDITS_CONVERTOR;
                         Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.\n");
                         Console.WriteLine("Thank you for playing!\n");
                         gameOver = true;
