@@ -30,7 +30,13 @@
             {
                 Console.WriteLine("\t!?How much is your wager?!");
                 int wagerAmount = Convert.ToInt32(Console.ReadLine());
-
+                if (wagerAmount > MAXIMUM_WAGER)
+                {
+                    Console.WriteLine("Invalid input!");
+                    Console.WriteLine("Your wager is bigger than maximum wager amount!");
+                    Console.WriteLine("Apply the amount correctly!");
+                    break;
+                }
                 if (playingCredits < MAXIMUM_WAGER)
                 {
                     wagerAmount = Math.Min(playingCredits, wagerAmount);
