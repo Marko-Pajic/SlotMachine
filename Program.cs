@@ -30,6 +30,7 @@
             {
                 Console.WriteLine("\t!?How much is your wager?!");
                 int wagerAmount = Convert.ToInt32(Console.ReadLine());
+
                 if (wagerAmount > MAXIMUM_WAGER)
                 {
                     Console.WriteLine("Invalid input!");
@@ -37,6 +38,7 @@
                     Console.WriteLine("Apply the amount correctly!");
                     break;
                 }
+
                 if (playingCredits < MAXIMUM_WAGER)
                 {
                     wagerAmount = Math.Min(playingCredits, wagerAmount);
@@ -178,7 +180,7 @@
                     if (cashMeOut == "y")
                     {
                         cashDeposit = playingCredits / 5;
-                        Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.");
+                        Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.\n");
                         Console.WriteLine("Thank you for playing!\n");
                         gameOver = true;
                         break;
