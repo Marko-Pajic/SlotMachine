@@ -18,14 +18,19 @@ namespace SlotMachine
             Console.WriteLine("One credit will give you opportunity to play one line\n");
             Console.WriteLine("As you increase the wager more lines will open continuing downwords horisontally,vertically and diagonally");
             Console.WriteLine($"{Program.MAXIMUM_WAGER} credits is a maximum as it gives you oportunity to play all possible lines\n");
-        }
-        public static int DepositInput()
-        {
             Console.WriteLine("\t!!!Spining time!!!\n");
             Console.WriteLine("\t$Insert the deposit$");
+        }
+        public static int StringToIntConvert()
+        {
             string deposit = Console.ReadLine();
             int result = int.Parse(deposit);
             return result;
+        }
+
+        public static void WagerInqury()
+        {
+            Console.WriteLine("\t!?How much is your wager?!");
         }
     }
 }
