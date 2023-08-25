@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlotMachine", "SlotMachine.csproj", "{C6FBAC1F-96A5-4B6C-94E3-7D0FF2D6A63B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlotMachine", "SlotMachine.csproj", "{C6FBAC1F-96A5-4B6C-94E3-7D0FF2D6A63B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5460FBB4-0831-47F6-AB20-646C4B8AF8D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

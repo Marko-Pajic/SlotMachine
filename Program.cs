@@ -20,11 +20,12 @@
             Console.WriteLine("As you increase the wager more lines will open continuing downwords horisontally,vertically and diagonally");
             Console.WriteLine($"{MAXIMUM_WAGER} credits is a maximum as it gives you oportunity to play all possible lines\n");
 
-            Console.WriteLine("\t!!!Spining time!!!\n");
-            Console.WriteLine("\t$Insert the deposit$");
-            int cashDeposit = Convert.ToInt32(Console.ReadLine());
-            int playingCredits = cashDeposit * CREDITS_CONVERTOR;
-            Console.WriteLine($"\nPlaying credits = {playingCredits}\n");
+            //Console.WriteLine("\t!!!Spining time!!!\n");
+            //Console.WriteLine("\t$Insert the deposit$");
+            int cashDeposit = UIMethods.DepositInput(); //Convert.ToInt32(Console.ReadLine());
+            int playingCredits = CalculatePlayingCredits(cashDeposit, CREDITS_CONVERTOR); //cashDeposit * CREDITS_CONVERTOR;
+           // Console.WriteLine($"\nPlaying credits = {playingCredits}\n");
+
             int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
 
             while (playingCredits >= MINIMUM_WAGER)
@@ -198,6 +199,12 @@
                 }
             }
             Console.WriteLine("GAME OVER!");
+        }
+        static int CalculatePlayingCredits(int cashDeposit, int constnant)
+        {
+            int result = cashDeposit * constnant;
+            Console.WriteLine($"\nPlaying credits = {result}\n");
+            return result;
         }
     }
 }
