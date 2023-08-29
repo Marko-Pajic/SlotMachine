@@ -1,4 +1,6 @@
-﻿namespace SlotMachine
+﻿using System.Data;
+
+namespace SlotMachine
 {
     internal class Program
     {
@@ -37,16 +39,7 @@
                 playingCredits -= wagerAmount;
                 int winningLinesCount = 0;
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
-
-                for (int row = 0; row < GRID_ROW; row++)
-                {
-                    for (int col = 0; col < GRID_COLUMN; col++)
-                    {
-                        slotMachine[row, col] = rng.Next(1, UPPER_BOUND);
-                        Console.Write("\t " + slotMachine[row, col] + " ");
-                    }
-                    Console.WriteLine();
-                }
+                slotMachine = GenerateSlotMachineGrid(GRID_ROW, GRID_COLUMN, UPPER_BOUND);
 
                 if (wagerAmount >= MINIMUM_WAGER)
                 {
@@ -64,13 +57,13 @@
                                 allValuesAreEqual = false;
                                 break;
                             }
-                            Console.WriteLine();
+                           // Console.WriteLine();
                         }
 
                         if (allValuesAreEqual)
                         {
                             winningLinesCount++;
-                            Console.WriteLine("Win!");
+                            Console.WriteLine("Win!\n");
                         }
                     }
                 }
@@ -91,13 +84,13 @@
                                 allValuesAreEqual = false;
                                 break;
                             }
-                            Console.WriteLine();
+                            //Console.WriteLine();
                         }
 
                         if (allValuesAreEqual)
                         {
                             winningLinesCount++;
-                            Console.WriteLine("Win!");
+                            Console.WriteLine("Win!\n");
                         }
                     }
                 }
@@ -120,7 +113,7 @@
                     if (allValuesAreEqual)
                     {
                         winningLinesCount++;
-                        Console.WriteLine("Win!");
+                        Console.WriteLine("Win!\n");
                     }
                 }
 
@@ -144,7 +137,7 @@
                     if (allValuesAreEqual)
                     {
                         winningLinesCount++;
-                        Console.WriteLine("Win!");
+                        Console.WriteLine("Win!\n");
                     }
                 }
 
@@ -154,7 +147,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("No luck this time!\nLets spin some more!\n");
+                    Console.WriteLine("\tNo luck this time!\nLets spin some more!\n");
                 }
 
                 winningLinesCount *= winningLinesCount;
@@ -195,9 +188,27 @@
             return result;
         }
 
-        static int AddTwoValues(int value1, int value2) 
+        static int AddTwoValues(int value1, int value2)
         {
             return value1 + value2;
         }
+        public static int[,] GenerateSlotMachineGrid(int gridRow, int gridColumn, int upperBound)
+        {
+            Random rng = new Random();
+            int[,] slotMachine = new int[gridRow, gridColumn];
+
+            for (int row = 0; row < gridRow; row++)
+            {
+                for (int col = 0; col < gridColumn; col++)
+                {
+                    slotMachine[row, col] = rng.Next(1, upperBound);
+                    Console.Write("\t " + slotMachine[row, col] + " ");
+                }
+                Console.WriteLine();
+            }
+            return slotMachine;
+        }
+
     }
+    
 }

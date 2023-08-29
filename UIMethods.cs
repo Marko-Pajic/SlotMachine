@@ -28,9 +28,23 @@ namespace SlotMachine
             return result;
         }
 
-        public static void WagerInqury()
+        public static void WagerInquiry()
         {
             Console.WriteLine("\t!?How much is your wager?!");
         }
+
+        public static void InvalidInput() 
+        {
+            Console.WriteLine("Invalid input!");
+            Console.WriteLine("Your wager is bigger than maximum wager amount!");
+            Console.WriteLine("Apply the amount correctly!");
+        }
+
+        public static void DisplayGrid(int slotgrid)
+        {
+            Console.Write("\t " + slotgrid + " ");
+        }
+
+       
     }
 }
