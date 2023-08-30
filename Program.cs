@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace SlotMachine
+﻿namespace SlotMachine
 {
     internal class Program
     {
@@ -72,7 +70,7 @@ namespace SlotMachine
                 {
                     int numberOfColumnsToCheck = Math.Min(wagerAmount - GRID_ROW, GRID_ROW);
 
-                    winningLinesCount = SearchColumns(numberOfColumnsToCheck, slotMachine, GRID_ROW, winningLinesCount);
+                    winningLinesCount += SearchColumns(numberOfColumnsToCheck, slotMachine);
                 }
 
                 if (wagerAmount > allRowsandColsChecked)
@@ -191,14 +189,15 @@ namespace SlotMachine
             return slotMachine;
         }
 
-        public static int SearchColumns(int numberOfColumnsToCheck, int[,] slotMachine, int gridRow, int winningLinesCount)
+        public static int SearchColumns(int numberOfColumnsToCheck, int[,] slotMachine)
         {
+            int winningLines = 0;
             for (int col = 0; col < numberOfColumnsToCheck; col++)
             {
                 int firstValueOfCLine = slotMachine[0, col];
                 bool allValuesAreEqual = true;
 
-                for (int row = 0; row < gridRow; row++)
+                for (int row = 0; row < Program.GRID_ROW; row++)
                 {
                     if (firstValueOfCLine != slotMachine[row, col])
                     {
@@ -210,13 +209,13 @@ namespace SlotMachine
 
                 if (allValuesAreEqual)
                 {
-                    winningLinesCount++;
+                    winningLines++;
                     Console.WriteLine("Win!\n");
                 }
             }
-            return winningLinesCount;
+            return winningLines;
         }
 
     }
-    
+
 }
