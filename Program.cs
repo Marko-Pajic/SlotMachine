@@ -16,7 +16,7 @@
             int cashDeposit = UIMethods.StringToIntConvert();
             int playingCredits = CalculatePlayingCredits(cashDeposit, CREDITS_CONVERTOR);
 
-            int allRowsandColsChecked = AddTwoValues(GRID_ROW, GRID_COLUMN);
+            int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
 
             while (playingCredits >= MINIMUM_WAGER)
             {
@@ -165,11 +165,6 @@
             int result = cashDeposit * constnant;
             Console.WriteLine($"\nPlaying credits = {result}\n");
             return result;
-        }
-
-        static int AddTwoValues(int value1, int value2)
-        {
-            return value1 + value2;
         }
 
         public static int[,] GenerateSlotMachineGrid(int gridRow, int gridColumn, int upperBound)
