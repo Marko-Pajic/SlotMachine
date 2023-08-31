@@ -87,5 +87,57 @@ namespace SlotMachine
             }
             return winningLines;
         }
+
+        public static int SearchFirstDiagonal(int[,] slotMachine)
+        {
+            bool allValuesAreEqual = true;
+            int winningLines = 0;
+
+            for (int i = 0; i < Program.GRID_ROW; i++)
+            {
+                int firstValueOfDLine = slotMachine[0, 0];
+
+                if (firstValueOfDLine != slotMachine[i, i])
+                {
+                    allValuesAreEqual = false;
+                    break;
+                }
+            }
+
+            if (allValuesAreEqual)
+            {
+                winningLines++;
+                Console.WriteLine("Win!\n");
+            }
+
+            return winningLines;
+        }
+
+        public static int SearchSecondDiagonal(int[,] slotMachine)
+        {
+            bool allValuesAreEqual = true;
+            int winningLines = 0;
+
+            for (int i = Program.GRID_COLUMN; i > 0; i--)
+            {
+                int row = Math.Abs(i - Program.GRID_COLUMN);
+                int col = i - 1;
+                int firstValueOfDLine = slotMachine[0, Program.GRID_COLUMN - 1];
+
+                if (firstValueOfDLine != slotMachine[row, col])
+                {
+                    allValuesAreEqual = false;
+                    break;
+                }
+            }
+
+            if (allValuesAreEqual)
+            {
+                winningLines++;
+                Console.WriteLine("Win!\n");
+            }
+
+            return winningLines;
+        }
     }
 }

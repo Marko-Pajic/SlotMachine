@@ -55,48 +55,12 @@
 
                 if (wagerAmount > allRowsandColsChecked)
                 {
-                    bool allValuesAreEqual = true;
-
-                    for (int i = 0; i < GRID_ROW; i++)
-                    {
-                        int firstValueOfDLine = slotMachine[0, 0];
-
-                        if (firstValueOfDLine != slotMachine[i, i])
-                        {
-                            allValuesAreEqual = false;
-                            break;
-                        }
-                    }
-
-                    if (allValuesAreEqual)
-                    {
-                        winningLinesCount++;
-                        Console.WriteLine("Win!\n");
-                    }
+                   winningLinesCount += LogicMethods.SearchFirstDiagonal(slotMachine);
                 }
 
                 if (wagerAmount == MAXIMUM_WAGER)
                 {
-                    bool allValuesAreEqual = true;
-
-                    for (int i = GRID_COLUMN; i > 0; i--)
-                    {
-                        int row = Math.Abs(i - GRID_COLUMN);
-                        int col = i - 1;
-                        int firstValueOfDLine = slotMachine[0, GRID_COLUMN - 1];
-
-                        if (firstValueOfDLine != slotMachine[row, col])
-                        {
-                            allValuesAreEqual = false;
-                            break;
-                        }
-                    }
-
-                    if (allValuesAreEqual)
-                    {
-                        winningLinesCount++;
-                        Console.WriteLine("Win!\n");
-                    }
+                    winningLinesCount += LogicMethods.SearchSecondDiagonal(slotMachine);
                 }
 
                 if (winningLinesCount > 0)
