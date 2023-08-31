@@ -40,7 +40,7 @@ namespace SlotMachine
             Console.WriteLine("Apply the amount correctly!");
         }
 
-        public static void DisplayGrid(int slotgrid)
+        public static void DisplayGrid(int[,] slotgrid)
         {
             Console.Write("\t " + slotgrid + " ");
         }

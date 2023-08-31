@@ -14,7 +14,7 @@
             UIMethods.DisplayIntroAndRules();
 
             int cashDeposit = UIMethods.ConvertStringToInt();
-            int playingCredits = CalculatePlayingCredits(cashDeposit, CREDITS_CONVERTOR);
+            int playingCredits = LogicMethods.CalculatePlayingCredits(cashDeposit, CREDITS_CONVERTOR);
 
             int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
 
@@ -37,40 +37,20 @@
                 playingCredits -= wagerAmount;
                 int winningLinesCount = 0;
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
-                slotMachine = GenerateSlotMachineGrid(GRID_ROW, GRID_COLUMN, UPPER_BOUND);
+                slotMachine = LogicMethods.GenerateSlotMachineGrid(GRID_ROW, GRID_COLUMN, UPPER_BOUND);
 
                 if (wagerAmount >= MINIMUM_WAGER)
                 {
                     int numberOfRowsToCheck = Math.Min(wagerAmount, GRID_ROW);
 
-                    for (int row = 0; row < numberOfRowsToCheck; row++)
-                    {
-                        bool allValuesAreEqual = true;
-                        int firstValueOfRLine = slotMachine[row, 0];
-
-                        for (int col = 0; col < GRID_COLUMN; col++)
-                        {
-                            if (firstValueOfRLine != slotMachine[row, col])
-                            {
-                                allValuesAreEqual = false;
-                                break;
-                            }
-                            Console.WriteLine();
-                        }
-
-                        if (allValuesAreEqual)
-                        {
-                            winningLinesCount++;
-                            Console.WriteLine("Win!\n");
-                        }
-                    }
+                    winningLinesCount += LogicMethods.SearchRows(numberOfRowsToCheck, slotMachine);
                 }
 
                 if (wagerAmount > GRID_ROW)
                 {
                     int numberOfColumnsToCheck = Math.Min(wagerAmount - GRID_ROW, GRID_ROW);
 
-                    winningLinesCount += SearchColumns(numberOfColumnsToCheck, slotMachine);
+                    winningLinesCount += LogicMethods.SearchColumns(numberOfColumnsToCheck, slotMachine);
                 }
 
                 if (wagerAmount > allRowsandColsChecked)
@@ -158,57 +138,6 @@
                 }
             }
             Console.WriteLine("GAME OVER!");
-        }
-
-        static int CalculatePlayingCredits(int cashDeposit, int constnant)
-        {
-            int result = cashDeposit * constnant;
-            Console.WriteLine($"\nPlaying credits = {result}\n");
-            return result;
-        }
-
-        public static int[,] GenerateSlotMachineGrid(int gridRow, int gridColumn, int upperBound)
-        {
-            Random rng = new Random();
-            int[,] slotMachine = new int[gridRow, gridColumn];
-
-            for (int row = 0; row < gridRow; row++)
-            {
-                for (int col = 0; col < gridColumn; col++)
-                {
-                    slotMachine[row, col] = rng.Next(1, upperBound);
-                    Console.Write("\t " + slotMachine[row, col] + " ");
-                }
-                Console.WriteLine();
-            }
-            return slotMachine;
-        }
-
-        public static int SearchColumns(int numberOfColumnsToCheck, int[,] slotMachine)
-        {
-            int winningLines = 0;
-            for (int col = 0; col < numberOfColumnsToCheck; col++)
-            {
-                int firstValueOfCLine = slotMachine[0, col];
-                bool allValuesAreEqual = true;
-
-                for (int row = 0; row < Program.GRID_ROW; row++)
-                {
-                    if (firstValueOfCLine != slotMachine[row, col])
-                    {
-                        allValuesAreEqual = false;
-                        break;
-                    }
-                    Console.WriteLine();
-                }
-
-                if (allValuesAreEqual)
-                {
-                    winningLines++;
-                    Console.WriteLine("Win!\n");
-                }
-            }
-            return winningLines;
         }
 
     }
