@@ -11,21 +11,21 @@
         public static readonly Random rng = new Random();
         static void Main(string[] args)
         {
-            UIMethods.IntroAndRules();
+            UIMethods.DisplayIntroAndRules();
 
-            int cashDeposit = UIMethods.StringToIntConvert();
+            int cashDeposit = UIMethods.ConvertStringToInt();
             int playingCredits = CalculatePlayingCredits(cashDeposit, CREDITS_CONVERTOR);
 
             int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
 
             while (playingCredits >= MINIMUM_WAGER)
             {
-                UIMethods.WagerInquiry();
-                int wagerAmount = UIMethods.StringToIntConvert();
+                UIMethods.DisplayWagerInquiry();
+                int wagerAmount = UIMethods.ConvertStringToInt();
 
                 if (wagerAmount > MAXIMUM_WAGER)
                 {
-                    UIMethods.InvalidInput();
+                    UIMethods.DisplayInvalidInput();
                     break;
                 }
 

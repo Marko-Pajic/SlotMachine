@@ -8,7 +8,7 @@ namespace SlotMachine
 {
     public static class UIMethods
     {
-        public static void IntroAndRules()
+        public static void DisplayIntroAndRules()
         {
             Console.WriteLine("\t***Welcome to SlotMachine***\n");
             Console.WriteLine("To play this game you are going to need to deposit certain amount of money");
@@ -21,19 +21,19 @@ namespace SlotMachine
             Console.WriteLine("\t!!!Spining time!!!\n");
             Console.WriteLine("\t$Insert the deposit$");
         }
-        public static int StringToIntConvert()
+        public static int ConvertStringToInt()
         {
             string deposit = Console.ReadLine();
             int result = int.Parse(deposit);
             return result;
         }
 
-        public static void WagerInquiry()
+        public static void DisplayWagerInquiry()
         {
             Console.WriteLine("\t!?How much is your wager?!");
         }
 
-        public static void InvalidInput() 
+        public static void DisplayInvalidInput() 
         {
             Console.WriteLine("Invalid input!");
             Console.WriteLine("Your wager is bigger than maximum wager amount!");
