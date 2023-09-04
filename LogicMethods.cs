@@ -139,5 +139,25 @@ namespace SlotMachine
 
             return winningLines;
         }
+
+        public static bool SearchTruth(int cashDeposit, int playingCredits)
+        {
+
+            Console.WriteLine("Do you want to cash out?");
+            string cashMeOut = Console.ReadLine().ToLower();
+
+            if (cashMeOut == "y")
+            {
+                cashDeposit = playingCredits / Program.CREDITS_CONVERTOR;
+                Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.\n");
+                Console.WriteLine("Thank you for playing!\n");
+                return true;
+            } 
+            else
+            {
+                Console.WriteLine("Lets continue!\n");
+                return false;
+            }
+        }
     }
 }

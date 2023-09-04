@@ -37,6 +37,7 @@
                 playingCredits -= wagerAmount;
                 int winningLinesCount = 0;
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
+
                 slotMachine = LogicMethods.GenerateSlotMachineGrid(GRID_ROW, GRID_COLUMN, UPPER_BOUND);
 
                 if (wagerAmount >= MINIMUM_WAGER)
@@ -63,14 +64,7 @@
                     winningLinesCount += LogicMethods.SearchSecondDiagonal(slotMachine);
                 }
 
-                if (winningLinesCount > 0)
-                {
-                    Console.WriteLine($"You had {winningLinesCount} winning lines!\nNice!\nLets spin some more!\n");
-                }
-                else
-                {
-                    Console.WriteLine("\tNo luck this time!\nLets spin some more!\n");
-                }
+                UIMethods.DisplayPlayingOutcome(winningLinesCount);
 
                 winningLinesCount *= winningLinesCount;
                 playingCredits += winningLinesCount;
@@ -78,25 +72,11 @@
                 Console.WriteLine($"Your current playing credits are {playingCredits}\n");
                 bool gameOver = false;
 
-                while (playingCredits > 0)
+                if (playingCredits > 0)
                 {
-                    Console.WriteLine("Do you want to cash out?");
-                    string cashMeOut = Console.ReadLine().ToLower();
-                    if (cashMeOut == "y")
-                    {
-                        cashDeposit = playingCredits / CREDITS_CONVERTOR;
-                        Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.\n");
-                        Console.WriteLine("Thank you for playing!\n");
-                        gameOver = true;
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Lets continue!\n");
-                        break;
-                    }
+                   gameOver = LogicMethods.SearchTruth(cashDeposit, playingCredits);
                 }
-                if (gameOver)
+                if (gameOver == true)
                 {
                     break;
                 }

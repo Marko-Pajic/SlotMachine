@@ -40,6 +40,18 @@ namespace SlotMachine
             Console.WriteLine("Apply the amount correctly!");
         }
 
+        public static void DisplayPlayingOutcome(int winningLines)
+        {
+            if (winningLines > 0)
+            {
+                Console.WriteLine($"You had {winningLines} winning lines!\nNice!\nLets spin some more!\n");
+            }
+            else
+            {
+                Console.WriteLine("\tNo luck this time!\nLets spin some more!\n");
+            }
+        }
+
         public static void DisplayGrid(int[,] slotgrid)
         {
             Console.Write("\t " + slotgrid + " ");
