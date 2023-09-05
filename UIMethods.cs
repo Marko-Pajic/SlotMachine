@@ -52,10 +52,20 @@ namespace SlotMachine
             }
         }
 
-        public static void DisplayGrid(int[,] slotgrid)
+        public static void DisplayCurrentCredits(int currentCredits)
         {
-            Console.Write("\t " + slotgrid + " ");
+            Console.WriteLine($"Your current playing credits are {currentCredits}\n");
         }
+
+        public static void DisplayEndingMessage()
+        {
+            Console.WriteLine("GAME OVER!");
+        }
+
+        //public static void DisplayGrid(int[,] slotgrid)
+        //{
+        //    Console.Write("\t " + slotgrid + " ");
+        //}
 
        
     }

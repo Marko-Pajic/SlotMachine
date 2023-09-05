@@ -68,7 +68,7 @@
                 winningLinesCount *= winningLinesCount;
                 playingCredits += winningLinesCount;
 
-                Console.WriteLine($"Your current playing credits are {playingCredits}\n");
+                UIMethods.DisplayCurrentCredits(playingCredits);
                 bool gameOver = false;
 
                 if (playingCredits > 0)
@@ -80,7 +80,7 @@
                     break;
                 }
             }
-            Console.WriteLine("GAME OVER!");
+            UIMethods.DisplayEndingMessage();
         }
 
     }
