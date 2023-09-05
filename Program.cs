@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        public const int UPPER_BOUND = 6;
+        public const int UPPER_BOUND = 5;
         public const int MINIMUM_WAGER = 1;
         public const int MAXIMUM_WAGER = 8;
         public const int GRID_ROW = 3;
@@ -38,7 +38,7 @@
                 int winningLinesCount = 0;
                 int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
 
-                slotMachine = LogicMethods.GenerateSlotMachineGrid(GRID_ROW, GRID_COLUMN, UPPER_BOUND);
+                slotMachine = LogicMethods.GenerateSlotMachineGrid(GRID_ROW, GRID_COLUMN);
 
                 if (wagerAmount >= MINIMUM_WAGER)
                 {

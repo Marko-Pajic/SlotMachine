@@ -15,7 +15,7 @@ namespace SlotMachine
             return result;
         }
 
-        public static int[,] GenerateSlotMachineGrid(int gridRow, int gridColumn, int upperBound)
+        public static int[,] GenerateSlotMachineGrid(int gridRow, int gridColumn)
         {
             Random rng = new Random();
             int[,] slotMachine = new int[gridRow, gridColumn];
@@ -24,7 +24,7 @@ namespace SlotMachine
             {
                 for (int col = 0; col < gridColumn; col++)
                 {
-                    slotMachine[row, col] = rng.Next(1, upperBound);
+                    slotMachine[row, col] = rng.Next(1, Program.UPPER_BOUND + 1);
                     Console.Write("\t " + slotMachine[row, col] + " ");
                 }
                 Console.WriteLine();
