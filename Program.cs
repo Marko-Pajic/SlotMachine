@@ -14,7 +14,7 @@
             UIMethods.DisplayIntroAndRules();
 
             int cashDeposit = UIMethods.ConvertStringToInt();
-            int playingCredits = LogicMethods.CalculatePlayingCredits(cashDeposit, CREDITS_ARTITHMETIC_VALUE);
+            int playingCredits = LogicMethods.CalculatePlayingCredits(cashDeposit);
 
             int allRowsandColsChecked = GRID_ROW_COUNT + GRID_COLUMN_COUNT;
 
