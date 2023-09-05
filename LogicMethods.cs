@@ -8,9 +8,9 @@ namespace SlotMachine
 {
     public static class LogicMethods
     {
-        public static int CalculatePlayingCredits(int cashDeposit, int constnant)
+        public static int CalculatePlayingCredits(int cashDeposit)
         {
-            int result = cashDeposit * constnant;
+            int result = cashDeposit * Program.CREDITS_ARTITHMETIC_VALUE;
             Console.WriteLine($"\nPlaying credits = {result}\n");
             return result;
         }
