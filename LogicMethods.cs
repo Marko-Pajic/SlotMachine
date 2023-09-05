@@ -18,13 +18,13 @@ namespace SlotMachine
         public static int[,] GenerateSlotMachineGrid()
         {
             Random rng = new Random();
-            int[,] slotMachine = new int[Program.GRID_ROW, Program.GRID_COLUMN];
+            int[,] slotMachine = new int[Program.GRID_ROW_COUNT, Program.GRID_COLUMN_COUNT];
 
-            for (int row = 0; row < Program.GRID_ROW; row++)
+            for (int row = 0; row < Program.GRID_ROW_COUNT; row++)
             {
-                for (int col = 0; col < Program.GRID_COLUMN; col++)
+                for (int col = 0; col < Program.GRID_COLUMN_COUNT; col++)
                 {
-                    slotMachine[row, col] = rng.Next(1, Program.UPPER_BOUND + 1);
+                    slotMachine[row, col] = rng.Next(1, Program.MAXIMAL_GRID_VALUE + 1);
                     Console.Write("\t " + slotMachine[row, col] + " ");
                 }
                 Console.WriteLine();
@@ -41,7 +41,7 @@ namespace SlotMachine
                 bool allValuesAreEqual = true;
                 int firstValueOfRLine = slotMachine[row, 0];
 
-                for (int col = 0; col < Program.GRID_COLUMN; col++)
+                for (int col = 0; col < Program.GRID_COLUMN_COUNT; col++)
                 {
                     if (firstValueOfRLine != slotMachine[row, col])
                     {
@@ -69,7 +69,7 @@ namespace SlotMachine
                 int firstValueOfCLine = slotMachine[0, col];
                 bool allValuesAreEqual = true;
 
-                for (int row = 0; row < Program.GRID_ROW; row++)
+                for (int row = 0; row < Program.GRID_ROW_COUNT; row++)
                 {
                     if (firstValueOfCLine != slotMachine[row, col])
                     {
@@ -93,7 +93,7 @@ namespace SlotMachine
             bool allValuesAreEqual = true;
             int winningLines = 0;
 
-            for (int i = 0; i < Program.GRID_ROW; i++)
+            for (int i = 0; i < Program.GRID_ROW_COUNT; i++)
             {
                 int firstValueOfDLine = slotMachine[0, 0];
 
@@ -118,11 +118,11 @@ namespace SlotMachine
             bool allValuesAreEqual = true;
             int winningLines = 0;
 
-            for (int i = Program.GRID_COLUMN; i > 0; i--)
+            for (int i = Program.GRID_COLUMN_COUNT; i > 0; i--)
             {
-                int row = Math.Abs(i - Program.GRID_COLUMN);
+                int row = Math.Abs(i - Program.GRID_COLUMN_COUNT);
                 int col = i - 1;
-                int firstValueOfDLine = slotMachine[0, Program.GRID_COLUMN - 1];
+                int firstValueOfDLine = slotMachine[0, Program.GRID_COLUMN_COUNT - 1];
 
                 if (firstValueOfDLine != slotMachine[row, col])
                 {
@@ -148,7 +148,7 @@ namespace SlotMachine
 
             if (cashMeOut == "y")
             {
-                cashDeposit = playingCredits / Program.CREDITS_CONVERTOR;
+                cashDeposit = playingCredits / Program.CREDITS_ARTITHMETIC_VALUE;
                 Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.\n");
                 Console.WriteLine("Thank you for playing!\n");
                 return true;

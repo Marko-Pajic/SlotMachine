@@ -2,21 +2,21 @@
 {
     internal class Program
     {
-        public const int UPPER_BOUND = 5;
+        public const int MAXIMAL_GRID_VALUE = 5;
         public const int MINIMUM_WAGER = 1;
         public const int MAXIMUM_WAGER = 8;
-        public const int GRID_ROW = 3;
-        public const int GRID_COLUMN = 3;
-        public const int CREDITS_CONVERTOR = 5;
+        public const int GRID_ROW_COUNT = 3;
+        public const int GRID_COLUMN_COUNT = 3;
+        public const int CREDITS_ARTITHMETIC_VALUE = 5;
         public static readonly Random rng = new Random();
         static void Main(string[] args)
         {
             UIMethods.DisplayIntroAndRules();
 
             int cashDeposit = UIMethods.ConvertStringToInt();
-            int playingCredits = LogicMethods.CalculatePlayingCredits(cashDeposit, CREDITS_CONVERTOR);
+            int playingCredits = LogicMethods.CalculatePlayingCredits(cashDeposit, CREDITS_ARTITHMETIC_VALUE);
 
-            int allRowsandColsChecked = GRID_ROW + GRID_COLUMN;
+            int allRowsandColsChecked = GRID_ROW_COUNT + GRID_COLUMN_COUNT;
 
             while (playingCredits >= MINIMUM_WAGER)
             {
@@ -41,14 +41,14 @@
 
                 if (wagerAmount >= MINIMUM_WAGER)
                 {
-                    int numberOfRowsToCheck = Math.Min(wagerAmount, GRID_ROW);
+                    int numberOfRowsToCheck = Math.Min(wagerAmount, GRID_ROW_COUNT);
 
                     winningLinesCount += LogicMethods.SearchRows(numberOfRowsToCheck, slotMachine);
                 }
 
-                if (wagerAmount > GRID_ROW)
+                if (wagerAmount > GRID_ROW_COUNT)
                 {
-                    int numberOfColumnsToCheck = Math.Min(wagerAmount - GRID_ROW, GRID_ROW);
+                    int numberOfColumnsToCheck = Math.Min(wagerAmount - GRID_ROW_COUNT, GRID_ROW_COUNT);
 
                     winningLinesCount += LogicMethods.SearchColumns(numberOfColumnsToCheck, slotMachine);
                 }
