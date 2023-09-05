@@ -36,9 +36,8 @@
 
                 playingCredits -= wagerAmount;
                 int winningLinesCount = 0;
-                int[,] slotMachine = new int[GRID_ROW, GRID_COLUMN];
 
-                slotMachine = LogicMethods.GenerateSlotMachineGrid(GRID_ROW, GRID_COLUMN);
+                int[,] slotMachine = LogicMethods.GenerateSlotMachineGrid();
 
                 if (wagerAmount >= MINIMUM_WAGER)
                 {

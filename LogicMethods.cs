@@ -15,14 +15,14 @@ namespace SlotMachine
             return result;
         }
 
-        public static int[,] GenerateSlotMachineGrid(int gridRow, int gridColumn)
+        public static int[,] GenerateSlotMachineGrid()
         {
             Random rng = new Random();
-            int[,] slotMachine = new int[gridRow, gridColumn];
+            int[,] slotMachine = new int[Program.GRID_ROW, Program.GRID_COLUMN];
 
-            for (int row = 0; row < gridRow; row++)
+            for (int row = 0; row < Program.GRID_ROW; row++)
             {
-                for (int col = 0; col < gridColumn; col++)
+                for (int col = 0; col < Program.GRID_COLUMN; col++)
                 {
                     slotMachine[row, col] = rng.Next(1, Program.UPPER_BOUND + 1);
                     Console.Write("\t " + slotMachine[row, col] + " ");
