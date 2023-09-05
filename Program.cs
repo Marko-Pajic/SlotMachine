@@ -73,7 +73,7 @@
 
                 if (playingCredits > 0)
                 {
-                   gameOver = LogicMethods.SearchTruth(cashDeposit, playingCredits);
+                   gameOver = LogicMethods.GameEndingDecision(cashDeposit, playingCredits);
                 }
                 if (gameOver == true)
                 {

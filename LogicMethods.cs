@@ -140,7 +140,7 @@ namespace SlotMachine
             return winningLines;
         }
 
-        public static bool SearchTruth(int cashDeposit, int playingCredits)
+        public static bool GameEndingDecision(int cashDeposit, int playingCredits)
         {
 
             Console.WriteLine("Do you want to cash out?");
