@@ -11,7 +11,7 @@ namespace SlotMachine
         public static int CalculatePlayingCredits(int cashDeposit)
         {
             int result = cashDeposit * Program.CREDITS_ARTITHMETIC_VALUE;
-            Console.WriteLine($"\nPlaying credits = {result}\n");
+            UIMethods.DisplayPlayingCredits(result);
             return result;
         }
 
@@ -25,9 +25,9 @@ namespace SlotMachine
                 for (int col = 0; col < Program.GRID_COLUMN_COUNT; col++)
                 {
                     slotMachine[row, col] = rng.Next(1, Program.MAXIMAL_GRID_VALUE + 1);
-                    Console.Write("\t " + slotMachine[row, col] + " ");
+                    UIMethods.DisplayGrid(slotMachine, row, col);
                 }
-                Console.WriteLine();
+                UIMethods.AddEmptyLine();
             }
             return slotMachine;
         }
@@ -48,13 +48,13 @@ namespace SlotMachine
                         allValuesAreEqual = false;
                         break;
                     }
-                    Console.WriteLine();
+                    UIMethods.AddEmptyLine();
                 }
 
                 if (allValuesAreEqual)
                 {
                     winningLines++;
-                    Console.WriteLine("Win!\n");
+                    UIMethods.DisplayWinningMessage();
                 }
             }
             return winningLines;
@@ -76,13 +76,13 @@ namespace SlotMachine
                         allValuesAreEqual = false;
                         break;
                     }
-                    Console.WriteLine();
+                    UIMethods.AddEmptyLine();
                 }
 
                 if (allValuesAreEqual)
                 {
                     winningLines++;
-                    Console.WriteLine("Win!\n");
+                    UIMethods.DisplayWinningMessage();
                 }
             }
             return winningLines;
@@ -107,7 +107,7 @@ namespace SlotMachine
             if (allValuesAreEqual)
             {
                 winningLines++;
-                Console.WriteLine("Win!\n");
+                UIMethods.DisplayWinningMessage();
             }
 
             return winningLines;
@@ -134,7 +134,7 @@ namespace SlotMachine
             if (allValuesAreEqual)
             {
                 winningLines++;
-                Console.WriteLine("Win!\n");
+                UIMethods.DisplayWinningMessage();
             }
 
             return winningLines;
@@ -143,21 +143,25 @@ namespace SlotMachine
         public static bool GameEndingDecision(int cashDeposit, int playingCredits)
         {
 
-            Console.WriteLine("Do you want to cash out?");
+            UIMethods.DisplayCashOutInquiry();
             string cashMeOut = Console.ReadLine().ToLower();
 
             if (cashMeOut == "y")
             {
                 cashDeposit = playingCredits / Program.CREDITS_ARTITHMETIC_VALUE;
-                Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.\n");
-                Console.WriteLine("Thank you for playing!\n");
+                UIMethods.DisplayPaidOutAmount(cashDeposit);
                 return true;
             } 
             else
             {
-                Console.WriteLine("Lets continue!\n");
+                UIMethods.DisplayContinueMessage();
                 return false;
             }
         }
+
+        //public static int MainAlgorythm(int cashDeposit, int playingCredits)
+        //{
+
+        //}
     }
 }

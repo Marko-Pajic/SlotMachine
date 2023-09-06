@@ -33,7 +33,7 @@ namespace SlotMachine
             Console.WriteLine("\t!?How much is your wager?!");
         }
 
-        public static void DisplayInvalidInput() 
+        public static void DisplayInvalidInput()
         {
             Console.WriteLine("Invalid input!");
             Console.WriteLine("Your wager is bigger than maximum wager amount!");
@@ -61,12 +61,40 @@ namespace SlotMachine
         {
             Console.WriteLine("GAME OVER!");
         }
+        public static void DisplayPlayingCredits(int result)
+        {
+            Console.WriteLine($"\nPlaying credits = {result}\n");
+        }
 
-        //public static void DisplayGrid(int[,] slotgrid)
-        //{
-        //    Console.Write("\t " + slotgrid + " ");
-        //}
+        public static void DisplayGrid(int[,] slotMachine, int row, int col)
+        {
+            Console.Write("\t " + slotMachine[row, col] + " ");
+        }
 
-       
+        public static void AddEmptyLine()
+        {
+            Console.WriteLine();
+        }
+
+        public static void DisplayWinningMessage()
+        {
+            Console.WriteLine("Win!\n");
+        }
+
+        public static void DisplayCashOutInquiry()
+        {
+            Console.WriteLine("Do you want to cash out?");
+        }
+
+        public static void DisplayPaidOutAmount(int cashDeposit) 
+        {
+            Console.WriteLine($"Your money total {cashDeposit}$ will be paid out now.\n");
+            Console.WriteLine("Thank you for playing!\n");
+        }
+
+        public static void DisplayContinueMessage()
+        {
+            Console.WriteLine("Lets continue!\n");
+        }
     }
 }
