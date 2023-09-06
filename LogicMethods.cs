@@ -92,11 +92,10 @@ namespace SlotMachine
         {
             bool allValuesAreEqual = true;
             int winningLines = 0;
+            int firstValueOfDLine = slotMachine[0, 0];
 
             for (int i = 0; i < Program.GRID_ROW_COUNT; i++)
             {
-                int firstValueOfDLine = slotMachine[0, 0];
-
                 if (firstValueOfDLine != slotMachine[i, i])
                 {
                     allValuesAreEqual = false;
@@ -117,12 +116,12 @@ namespace SlotMachine
         {
             bool allValuesAreEqual = true;
             int winningLines = 0;
+            int firstValueOfDLine = slotMachine[0, Program.GRID_COLUMN_COUNT - 1];
 
             for (int i = Program.GRID_COLUMN_COUNT; i > 0; i--)
             {
                 int row = Math.Abs(i - Program.GRID_COLUMN_COUNT);
                 int col = i - 1;
-                int firstValueOfDLine = slotMachine[0, Program.GRID_COLUMN_COUNT - 1];
 
                 if (firstValueOfDLine != slotMachine[row, col])
                 {
@@ -151,7 +150,7 @@ namespace SlotMachine
                 cashDeposit = playingCredits / Program.CREDITS_ARTITHMETIC_VALUE;
                 UIMethods.DisplayPaidOutAmount(cashDeposit);
                 return true;
-            } 
+            }
             else
             {
                 UIMethods.DisplayContinueMessage();
