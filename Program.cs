@@ -20,7 +20,7 @@
                 if (wagerAmount > Constants.MAXIMUM_WAGER)
                 {
                     UIMethods.DisplayInvalidInput();
-                    break;
+                    continue;
                 }
 
                 if (playingCredits < Constants.MAXIMUM_WAGER)
