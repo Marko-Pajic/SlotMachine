@@ -1,6 +1,6 @@
 ﻿namespace SlotMachine
 {
-    internal class Constants
+    internal class Program
     {
         public static readonly Random rng = new Random();
         static void Main(string[] args)
