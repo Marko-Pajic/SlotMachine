@@ -46,13 +46,16 @@ namespace SlotMachine
             {
                 Console.WriteLine($"\tYou had {winningLines} winning lines!");
                 Console.WriteLine("\tNice!");
-                Console.WriteLine("\tLets spin some more!\n");
             }
             else
             {
-                Console.WriteLine("\tNo luck this time!");
-                Console.WriteLine("\tLets spin some more!\n");
+                Console.WriteLine("\tNo luck this time!\n");
             }
+        }
+
+        public static void DisplayEncouragementMessage() 
+        {
+            Console.WriteLine("\tLets spin some more!\n"); 
         }
 
         public static void DisplayCurrentCredits(int currentCredits)

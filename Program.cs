@@ -44,7 +44,8 @@
 
                 if (playingCredits > 0)
                 {
-                   gameOver = LogicMethods.GameEndingDecision(cashDeposit, playingCredits);
+                    UIMethods.DisplayEncouragementMessage();
+                    gameOver = LogicMethods.GameEndingDecision(cashDeposit, playingCredits);
                 }
                 if (gameOver == true)
                 {
