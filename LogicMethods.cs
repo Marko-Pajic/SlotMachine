@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SlotMachine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -151,7 +152,7 @@ namespace SlotMachine
                 cashDeposit = playingCredits / Program.CREDITS_ARTITHMETIC_VALUE;
                 UIMethods.DisplayPaidOutAmount(cashDeposit);
                 return true;
-            } 
+            }
             else
             {
                 UIMethods.DisplayContinueMessage();
@@ -159,9 +160,35 @@ namespace SlotMachine
             }
         }
 
-        //public static int MainAlgorythm(int cashDeposit, int playingCredits)
-        //{
+        public static int SearchingWinningCombination(int wagerAmount, int allRowsandColsChecked, int[,] slotMachine)
+        {
+            int winningLinesCount = 0;
 
-        //}
+            if (wagerAmount >= Program.MINIMUM_WAGER)
+            {
+                int numberOfRowsToCheck = Math.Min(wagerAmount, Program.GRID_ROW_COUNT);
+
+                winningLinesCount += LogicMethods.SearchRows(numberOfRowsToCheck, slotMachine);
+            }
+
+            if (wagerAmount > Program.GRID_ROW_COUNT)
+            {
+                int numberOfColumnsToCheck = Math.Min(wagerAmount - Program.GRID_ROW_COUNT, Program.GRID_ROW_COUNT);
+
+                winningLinesCount += LogicMethods.SearchColumns(numberOfColumnsToCheck, slotMachine);
+            }
+
+            if (wagerAmount > allRowsandColsChecked)
+            {
+                winningLinesCount += LogicMethods.SearchFirstDiagonal(slotMachine);
+            }
+
+            if (wagerAmount == Program.MAXIMUM_WAGER)
+            {
+                winningLinesCount += LogicMethods.SearchSecondDiagonal(slotMachine);
+            }
+
+            return winningLinesCount;
+        }
     }
 }

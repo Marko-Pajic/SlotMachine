@@ -35,33 +35,10 @@
                 }
 
                 playingCredits -= wagerAmount;
-                int winningLinesCount = 0;
 
                 int[,] slotMachine = LogicMethods.GenerateSlotMachineGrid();
 
-                if (wagerAmount >= MINIMUM_WAGER)
-                {
-                    int numberOfRowsToCheck = Math.Min(wagerAmount, GRID_ROW_COUNT);
-
-                    winningLinesCount += LogicMethods.SearchRows(numberOfRowsToCheck, slotMachine);
-                }
-
-                if (wagerAmount > GRID_ROW_COUNT)
-                {
-                    int numberOfColumnsToCheck = Math.Min(wagerAmount - GRID_ROW_COUNT, GRID_ROW_COUNT);
-
-                    winningLinesCount += LogicMethods.SearchColumns(numberOfColumnsToCheck, slotMachine);
-                }
-
-                if (wagerAmount > allRowsandColsChecked)
-                {
-                   winningLinesCount += LogicMethods.SearchFirstDiagonal(slotMachine);
-                }
-
-                if (wagerAmount == MAXIMUM_WAGER)
-                {
-                    winningLinesCount += LogicMethods.SearchSecondDiagonal(slotMachine);
-                }
+                int winningLinesCount = LogicMethods.SearchingWinningCombination(wagerAmount, allRowsandColsChecked, slotMachine);
 
                 UIMethods.DisplayPlayingOutcome(winningLinesCount);
 
