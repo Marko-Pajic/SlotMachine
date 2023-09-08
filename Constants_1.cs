@@ -1,13 +1,7 @@
 ﻿namespace SlotMachine
 {
-    internal class Program
+    internal class Constants
     {
-        public const int MAXIMAL_GRID_VALUE = 5;
-        public const int MINIMUM_WAGER = 1;
-        public const int MAXIMUM_WAGER = 8;
-        public const int GRID_ROW_COUNT = 3;
-        public const int GRID_COLUMN_COUNT = 3;
-        public const int CREDITS_ARTITHMETIC_VALUE = 5;
         public static readonly Random rng = new Random();
         static void Main(string[] args)
         {
@@ -16,20 +10,20 @@
             int cashDeposit = UIMethods.ConvertStringToInt();
             int playingCredits = LogicMethods.CalculatePlayingCredits(cashDeposit);
 
-            int allRowsandColsChecked = GRID_ROW_COUNT + GRID_COLUMN_COUNT;
+            int allRowsandColsChecked = Constants.GRID_ROW_COUNT + Constants.GRID_COLUMN_COUNT;
 
-            while (playingCredits >= MINIMUM_WAGER)
+            while (playingCredits >= Constants.MINIMUM_WAGER)
             {
                 UIMethods.DisplayWagerInquiry();
                 int wagerAmount = UIMethods.ConvertStringToInt();
 
-                if (wagerAmount > MAXIMUM_WAGER)
+                if (wagerAmount > Constants.MAXIMUM_WAGER)
                 {
                     UIMethods.DisplayInvalidInput();
                     break;
                 }
 
-                if (playingCredits < MAXIMUM_WAGER)
+                if (playingCredits < Constants.MAXIMUM_WAGER)
                 {
                     wagerAmount = Math.Min(playingCredits, wagerAmount);
                 }

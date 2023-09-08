@@ -11,7 +11,7 @@ namespace SlotMachine
     {
         public static int CalculatePlayingCredits(int cashDeposit)
         {
-            int result = cashDeposit * Program.CREDITS_ARTITHMETIC_VALUE;
+            int result = cashDeposit * Constants.CREDITS_ARTITHMETIC_VALUE;
             UIMethods.DisplayPlayingCredits(result);
             return result;
         }
@@ -19,13 +19,13 @@ namespace SlotMachine
         public static int[,] GenerateSlotMachineGrid()
         {
             Random rng = new Random();
-            int[,] slotMachine = new int[Program.GRID_ROW_COUNT, Program.GRID_COLUMN_COUNT];
+            int[,] slotMachine = new int[Constants.GRID_ROW_COUNT, Constants.GRID_COLUMN_COUNT];
 
-            for (int row = 0; row < Program.GRID_ROW_COUNT; row++)
+            for (int row = 0; row < Constants.GRID_ROW_COUNT; row++)
             {
-                for (int col = 0; col < Program.GRID_COLUMN_COUNT; col++)
+                for (int col = 0; col < Constants.GRID_COLUMN_COUNT; col++)
                 {
-                    slotMachine[row, col] = rng.Next(1, Program.MAXIMAL_GRID_VALUE + 1);
+                    slotMachine[row, col] = rng.Next(1, Constants.MAXIMAL_GRID_VALUE + 1);
                     UIMethods.DisplayGrid(slotMachine, row, col);
                 }
                 UIMethods.AddEmptyLine();
@@ -42,7 +42,7 @@ namespace SlotMachine
                 bool allValuesAreEqual = true;
                 int firstValueOfRLine = slotMachine[row, 0];
 
-                for (int col = 0; col < Program.GRID_COLUMN_COUNT; col++)
+                for (int col = 0; col < Constants.GRID_COLUMN_COUNT; col++)
                 {
                     if (firstValueOfRLine != slotMachine[row, col])
                     {
@@ -70,7 +70,7 @@ namespace SlotMachine
                 int firstValueOfCLine = slotMachine[0, col];
                 bool allValuesAreEqual = true;
 
-                for (int row = 0; row < Program.GRID_ROW_COUNT; row++)
+                for (int row = 0; row < Constants.GRID_ROW_COUNT; row++)
                 {
                     if (firstValueOfCLine != slotMachine[row, col])
                     {
@@ -94,7 +94,7 @@ namespace SlotMachine
             bool allValuesAreEqual = true;
             int winningLines = 0;
 
-            for (int i = 0; i < Program.GRID_ROW_COUNT; i++)
+            for (int i = 0; i < Constants.GRID_ROW_COUNT; i++)
             {
                 int firstValueOfDLine = slotMachine[0, 0];
 
@@ -119,11 +119,11 @@ namespace SlotMachine
             bool allValuesAreEqual = true;
             int winningLines = 0;
 
-            for (int i = Program.GRID_COLUMN_COUNT; i > 0; i--)
+            for (int i = Constants.GRID_COLUMN_COUNT; i > 0; i--)
             {
-                int row = Math.Abs(i - Program.GRID_COLUMN_COUNT);
+                int row = Math.Abs(i - Constants.GRID_COLUMN_COUNT);
                 int col = i - 1;
-                int firstValueOfDLine = slotMachine[0, Program.GRID_COLUMN_COUNT - 1];
+                int firstValueOfDLine = slotMachine[0, Constants.GRID_COLUMN_COUNT - 1];
 
                 if (firstValueOfDLine != slotMachine[row, col])
                 {
@@ -149,7 +149,7 @@ namespace SlotMachine
 
             if (cashMeOut == "y")
             {
-                cashDeposit = playingCredits / Program.CREDITS_ARTITHMETIC_VALUE;
+                cashDeposit = playingCredits / Constants.CREDITS_ARTITHMETIC_VALUE;
                 UIMethods.DisplayPaidOutAmount(cashDeposit);
                 return true;
             }
@@ -164,16 +164,16 @@ namespace SlotMachine
         {
             int winningLinesCount = 0;
 
-            if (wagerAmount >= Program.MINIMUM_WAGER)
+            if (wagerAmount >= Constants.MINIMUM_WAGER)
             {
-                int numberOfRowsToCheck = Math.Min(wagerAmount, Program.GRID_ROW_COUNT);
+                int numberOfRowsToCheck = Math.Min(wagerAmount, Constants.GRID_ROW_COUNT);
 
                 winningLinesCount += LogicMethods.SearchRows(numberOfRowsToCheck, slotMachine);
             }
 
-            if (wagerAmount > Program.GRID_ROW_COUNT)
+            if (wagerAmount > Constants.GRID_ROW_COUNT)
             {
-                int numberOfColumnsToCheck = Math.Min(wagerAmount - Program.GRID_ROW_COUNT, Program.GRID_ROW_COUNT);
+                int numberOfColumnsToCheck = Math.Min(wagerAmount - Constants.GRID_ROW_COUNT, Constants.GRID_ROW_COUNT);
 
                 winningLinesCount += LogicMethods.SearchColumns(numberOfColumnsToCheck, slotMachine);
             }
@@ -183,7 +183,7 @@ namespace SlotMachine
                 winningLinesCount += LogicMethods.SearchFirstDiagonal(slotMachine);
             }
 
-            if (wagerAmount == Program.MAXIMUM_WAGER)
+            if (wagerAmount == Constants.MAXIMUM_WAGER)
             {
                 winningLinesCount += LogicMethods.SearchSecondDiagonal(slotMachine);
             }
