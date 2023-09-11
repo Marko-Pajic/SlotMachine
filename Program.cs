@@ -11,8 +11,8 @@
             int playingCredits = LogicMethods.CalculatePlayingCredits(cashDeposit);
 
             int allRowsandColsChecked = Constants.GRID_ROW_COUNT + Constants.GRID_COLUMN_COUNT;
-
-            while (playingCredits >= Constants.MINIMUM_WAGER)
+            bool gameOn = true;
+            while (gameOn) //(playingCredits >= Constants.MINIMUM_WAGER)
             {
                 UIMethods.DisplayWagerInquiry();
                 int wagerAmount = UIMethods.ConvertStringToInt();
@@ -40,16 +40,16 @@
                 playingCredits += winningLinesCount;
 
                 UIMethods.DisplayCurrentCredits(playingCredits);
-                bool gameOver = false;
+                //bool gameOver = false;
 
                 if (playingCredits > 0)
                 {
                     UIMethods.DisplayEncouragementMessage();
-                    gameOver = LogicMethods.GameEndingDecision(cashDeposit, playingCredits);
+                    gameOn = LogicMethods.GameEndingDecision(cashDeposit, playingCredits);
                 }
-                if (gameOver == true)
+                else//if (gameOver == true)
                 {
-                    break;
+                    gameOn = false; // break;
                 }
             }
             UIMethods.DisplayEndingMessage();

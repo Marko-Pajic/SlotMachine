@@ -151,12 +151,12 @@ namespace SlotMachine
             {
                 cashDeposit = playingCredits / Constants.CREDITS_ARTITHMETIC_VALUE;
                 UIMethods.DisplayPaidOutAmount(cashDeposit);
-                return true;
+                return false;
             }
             else
             {
                 UIMethods.DisplayContinueMessage();
-                return false;
+                return true;
             }
         }
 
