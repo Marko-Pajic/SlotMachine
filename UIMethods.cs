@@ -8,6 +8,9 @@ namespace SlotMachine
 {
     public static class UIMethods
     {
+        /// <summary>
+        /// Displays intro and game rules
+        /// </summary>
         public static void DisplayIntroAndRules()
         {
             Console.WriteLine("\t***Welcome to SlotMachine***\n");
@@ -21,6 +24,11 @@ namespace SlotMachine
             Console.WriteLine("\t!!!Spining time!!!\n");
             Console.WriteLine("\t$ Insert the deposit $");
         }
+
+        /// <summary>
+        /// Converts string input to int 
+        /// </summary>
+        /// <returns>integer</returns>
         public static int ConvertStringToInt()
         {
             string deposit = Console.ReadLine();
@@ -28,11 +36,17 @@ namespace SlotMachine
             return result;
         }
 
+        /// <summary>
+        /// Displays a message
+        /// </summary>
         public static void DisplayWagerInquiry()
         {
             Console.WriteLine("\t(X) How much is your wager (X)");
         }
 
+        /// <summary>
+        /// Displays a message with instructions
+        /// </summary>
         public static void DisplayInvalidInput()
         {
             Console.WriteLine("\tInvalid input!");
@@ -40,6 +54,10 @@ namespace SlotMachine
             Console.WriteLine("\tApply the amount correctly!");
         }
 
+        /// <summary>
+        /// Makes decision and displays text depending on a parameter
+        /// </summary>
+        /// <param name="winningLines">takes a number</param>
         public static void DisplayPlayingOutcome(int winningLines)
         {
             if (winningLines > 0)
@@ -53,40 +71,70 @@ namespace SlotMachine
             }
         }
 
+        /// <summary>
+        /// Displays a message
+        /// </summary>
         public static void DisplayEncouragementMessage() 
         {
             Console.WriteLine("\tLets spin some more!\n"); 
         }
 
+        /// <summary>
+        /// Displays a message with current state of playing credits
+        /// </summary>
+        /// <param name="currentCredits">takes a number</param>
         public static void DisplayCurrentCredits(int currentCredits)
         {
             Console.WriteLine($"\tYour current playing credits are {currentCredits} (X)\n");
         }
 
+        /// <summary>
+        /// Displays a message
+        /// </summary>
         public static void DisplayEndingMessage()
         {
             Console.WriteLine("\tGAME OVER!");
         }
+
+        /// <summary>
+        /// Displays a message
+        /// </summary>
+        /// <param name="result">takes a number</param>
         public static void DisplayPlayingCredits(int result)
         {
             Console.WriteLine($"\tPlaying credits = {result} (X)\n\t");
         }
 
+        /// <summary>
+        /// Displays visualy 2d array in a grid
+        /// </summary>
+        /// <param name="slotMachine">takes a 2d array</param>
+        /// <param name="row">takes a number</param>
+        /// <param name="col">takes a number</param>
         public static void DisplayGrid(int[,] slotMachine, int row, int col)
         {
             Console.Write("\t " + slotMachine[row, col] + " ");
         }
 
+        /// <summary>
+        /// Adds an empty line
+        /// </summary>
         public static void AddEmptyLine()
         {
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Displays a message
+        /// </summary>
         public static void DisplayWinningMessage()
         {
             Console.WriteLine("\tWin!\n");
         }
 
+        /// <summary>
+        /// Displays a message
+        /// </summary>
         public static void DisplayCashOutInquiry()
         {
             Console.WriteLine("\tDo you want to CASH OUT?");
@@ -94,12 +142,19 @@ namespace SlotMachine
             Console.WriteLine("\tPress Y if you want finish game and retrive your money...");
         }
 
+        /// <summary>
+        /// Displays a message
+        /// </summary>
+        /// <param name="cashDeposit"></param>
         public static void DisplayPaidOutAmount(int cashDeposit)
         {
             Console.WriteLine($"\tYour money total {cashDeposit}$ will be paid out now.\n");
             Console.WriteLine("\tThank you for playing!\n");
         }
 
+        /// <summary>
+        /// Displays a message
+        /// </summary>
         public static void DisplayContinueMessage()
         {
             Console.WriteLine("\tLets continue!\n");

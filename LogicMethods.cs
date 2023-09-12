@@ -9,6 +9,11 @@ namespace SlotMachine
 {
     public static class LogicMethods
     {
+        /// <summary>
+        /// multiplies int and constant
+        /// </summary>
+        /// <param name="cashDeposit">takes a value</param>
+        /// <returns>the product of int and constant</returns>
         public static int CalculatePlayingCredits(int cashDeposit)
         {
             int result = cashDeposit * Constants.CREDITS_ARTITHMETIC_VALUE;
@@ -16,6 +21,10 @@ namespace SlotMachine
             return result;
         }
 
+        /// <summary>
+        /// Creates 2d array filled with random numbers
+        /// </summary>
+        /// <returns>2d array</returns>
         public static int[,] GenerateSlotMachineGrid()
         {
             Random rng = new Random();
@@ -33,6 +42,12 @@ namespace SlotMachine
             return slotMachine;
         }
 
+        /// <summary>
+        /// Loops through 2d array searching for rows\lines with same numbers
+        /// </summary>
+        /// <param name="numberOfRowsToCheck">takes a int</param>
+        /// <param name="slotMachine">takes a 2d array</param>
+        /// <returns>number of rows\lines that contain same number</returns>
         public static int SearchRows(int numberOfRowsToCheck, int[,] slotMachine)
         {
             int winningLines = 0;
@@ -61,6 +76,12 @@ namespace SlotMachine
             return winningLines;
         }
 
+        /// <summary>
+        /// Loops through 2d array searching for columns\lines with same numbers
+        /// </summary>
+        /// <param name="numberOfColumnsToCheck">takes an int</param>
+        /// <param name="slotMachine">takes a 2d array</param>
+        /// <returns>number of columns\lines that contain same number</returns>
         public static int SearchColumns(int numberOfColumnsToCheck, int[,] slotMachine)
         {
             int winningLines = 0;
@@ -89,6 +110,11 @@ namespace SlotMachine
             return winningLines;
         }
 
+        /// <summary>
+        /// Loops through 2d array searching for row and column positions with same numbers
+        /// </summary>
+        /// <param name="slotMachine">takes a 2d array</param>
+        /// <returns>number of diagonal lines made of array positions that contain same number</returns>
         public static int SearchFirstDiagonal(int[,] slotMachine)
         {
             bool allValuesAreEqual = true;
@@ -114,6 +140,11 @@ namespace SlotMachine
             return winningLines;
         }
 
+        /// <summary>
+        /// Loops through 2d array searching for row and column positions with same numbers
+        /// </summary>
+        /// <param name="slotMachine">takes a 2d array</param>
+        /// <returns>number of diagonal lines made of array positions that contain same number</returns>
         public static int SearchSecondDiagonal(int[,] slotMachine)
         {
             bool allValuesAreEqual = true;
@@ -141,6 +172,12 @@ namespace SlotMachine
             return winningLines;
         }
 
+        /// <summary>
+        /// Asks user to decide to either quit or continue playing
+        /// </summary>
+        /// <param name="cashDeposit">displays a number</param>
+        /// <param name="playingCredits">divides a number</param>
+        /// <returns>boolean depending on players choice</returns>
         public static bool GameEndingDecision(int cashDeposit, int playingCredits)
         {
 
@@ -160,6 +197,13 @@ namespace SlotMachine
             }
         }
 
+        /// <summary>
+        /// Groups all methods that loops through 2d array searching for winning lines depending on how much player waged
+        /// </summary>
+        /// <param name="wagerAmount">takes a int</param>
+        /// <param name="allRowsandColsChecked">takes a int</param>
+        /// <param name="slotMachine">takes a 2d array</param>
+        /// <returns>overall number of lines that contain same number</returns>
         public static int SearchingWinningCombination(int wagerAmount, int allRowsandColsChecked, int[,] slotMachine)
         {
             int winningLinesCount = 0;

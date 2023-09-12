@@ -40,16 +40,15 @@
                 playingCredits += winningLinesCount;
 
                 UIMethods.DisplayCurrentCredits(playingCredits);
-                //bool gameOver = false;
 
                 if (playingCredits > 0)
                 {
                     UIMethods.DisplayEncouragementMessage();
                     gameOn = LogicMethods.GameEndingDecision(cashDeposit, playingCredits);
                 }
-                else//if (gameOver == true)
+                else
                 {
-                    gameOn = false; // break;
+                    gameOn = false;
                 }
             }
             UIMethods.DisplayEndingMessage();
